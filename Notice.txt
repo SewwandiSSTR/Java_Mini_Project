@@ -1,0 +1,18 @@
+Notice
+
+CREATE TABLE Notice (
+    Notice_id INT PRIMARY KEY AUTO_INCREMENT,
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Notice_description VARCHAR(200) NOT NULL,
+    Active CHAR(12) NOT NULL
+);
+
+INSERT INTO Notice
+ ( Notice_description, Active)
+ VALUES
+('University will remain closed on April 14th for Sinhala and Tamil New Year.', 'Yes'),
+('Exam registration deadline extended to April 25th.', 'Yes'),
+('All students must submit their project proposals by April 30th.', 'No'),
+('Library hours will be extended during exam week.', 'Yes'),
+('Scheduled server downtime: Saturday at 10 PM.', 'No'),
+('Scholarship applications are now open. Deadline: May 15th.', 'Yes');
