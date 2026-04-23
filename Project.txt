@@ -1,0 +1,67 @@
+
+-- Project
+CREATE TABLE Project(
+	C_code CHAR(8) NOT NULL,
+	C_type ENUM('P','T') NOT NULL,
+	Regno CHAR(12) NOT NULL,
+	P_mark FLOAT(9,2) NOT NULL CHECK (P_mark >= 0 AND P_mark <= 100),
+
+	PRIMARY KEY(C_code,C_type,Regno),
+	
+	-- Foreign key 1:Relate to the Course
+	CONSTRAINT fk_Courseproject FOREIGN KEY(C_code,C_type) REFERENCES Course(C_code,C_type),
+
+	-- Foreign key 2:Relate to the Student
+	CONSTRAINT fk_ProjectStudent FOREIGN KEY(Regno) REFERENCES User(User_id)
+ ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+-- insert data
+INSERT INTO Project
+	(Regno,C_code,C_type,P_mark)
+VALUES
+	('TG/2023/001','ICT2152','T',71),
+	('TG/2023/002','ICT2152','T',78),
+	('TG/2023/003','ICT2152','T',80),
+	('TG/2023/004','ICT2152','T',75),
+	('TG/2023/005','ICT2152','T',82),
+	('TG/2023/006','ICT2152','T',89),
+	('TG/2023/007','ICT2152','T',79),
+	('TG/2023/008','ICT2152','T',81),
+	('TG/2023/009','ICT2152','T',90),
+	('TG/2023/010','ICT2152','T',72),
+	('TG/2023/012','ICT2152','T',60),
+	('TG/2023/013','ICT2152','T',84),
+	('TG/2023/014','ICT2152','T',78),
+	('TG/2023/015','ICT2152','T',76),
+
+	('TG/2023/001','ICT2132','P',60),
+	('TG/2023/002','ICT2132','P',84),
+	('TG/2023/003','ICT2132','P',78),
+	('TG/2023/004','ICT2132','P',76),
+	('TG/2023/005','ICT2132','P',87),
+	('TG/2023/006','ICT2132','P',89),
+	('TG/2023/007','ICT2132','P',88),
+	('TG/2023/008','ICT2132','P',78),
+	('TG/2023/009','ICT2132','P',83),
+	('TG/2023/010','ICT2132','P',80),
+	('TG/2023/012','ICT2132','P',71),
+	('TG/2023/013','ICT2132','P',78),
+	('TG/2023/014','ICT2132','P',80),
+	('TG/2023/015','ICT2132','P',75),
+
+        ('TG/2023/001','TCS2122','T',71),
+	('TG/2023/002','TCS2122','T',78),
+	('TG/2023/003','TCS2122','T',80),
+	('TG/2023/004','TCS2122','T',72),
+	('TG/2023/005','TCS2122','T',82),
+	('TG/2023/006','TCS2122','T',89),
+	('TG/2023/007','TCS2122','T',79),
+	('TG/2023/008','TCS2122','T',55),
+	('TG/2023/009','TCS2122','T',90),
+	('TG/2023/010','TCS2122','T',72),
+	('TG/2023/012','TCS2122','T',60),
+	('TG/2023/013','TCS2122','T',84),
+	('TG/2023/014','TCS2122','T',78),
+	('TG/2023/015','TCS2122','T',76);
