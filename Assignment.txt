@@ -1,0 +1,87 @@
+--- CREATE TABLE ---
+
+CREATE TABLE Assignment(
+    C_code CHAR(8) NOT NULL,
+    C_type ENUM('P','T') NOT NULL,
+    Regno CHAR(12) NOT NULL,
+    A_mark FLOAT(5,2) NOT NULL CHECK (A_mark >= 0 AND A_mark <= 100),
+  
+
+    PRIMARY KEY(C_code, C_type, Regno),
+    
+
+    -- Foreign key 1: Relate to the Course
+    CONSTRAINT fk_AssignmentCourse FOREIGN KEY(C_code, C_type) 
+        REFERENCES Course(C_code, C_type) 
+        ON UPDATE CASCADE, 
+    
+    -- Foreign key 2: Relate to the Student 
+    CONSTRAINT fk_AssignmentStudent FOREIGN KEY(Regno) 
+        REFERENCES User(User_id)
+        ON UPDATE CASCADE ON DELETE CASCADE
+); 
+
+
+--- INSERT DATA ---
+
+INSERT INTO Assignment (C_code, C_type, Regno, A_mark) VALUES
+('ENG2122','T','TG/2023/001',75),
+('ENG2122','T','TG/2023/002',85),
+('ENG2122','T','TG/2023/003',65),
+('ENG2122','T','TG/2023/004',76),
+('ENG2122','T','TG/2023/005',89),
+('ENG2122','T','TG/2023/006',81),
+('ENG2122','T','TG/2023/007',73),
+('ENG2122','T','TG/2023/008',61),
+('ENG2122','T','TG/2023/009',52),
+('ENG2122','T','TG/2023/010',98),
+('ENG2122','T','TG/2023/012',81),
+('ENG2122','T','TG/2023/013',73),
+('ENG2122','T','TG/2023/014',61),
+('ENG2122','T','TG/2023/015',52),
+
+('ICT2142','T','TG/2023/001',71),
+('ICT2142','T','TG/2023/002',65),
+('ICT2142','T','TG/2023/003',85),
+('ICT2142','T','TG/2023/004',96),
+('ICT2142','T','TG/2023/005',29),
+('ICT2142','T','TG/2023/006',71),
+('ICT2142','T','TG/2023/007',43),
+('ICT2142','T','TG/2023/008',61),
+('ICT2142','T','TG/2023/009',92),
+('ICT2142','T','TG/2023/010',68),
+('ICT2142','T','TG/2023/012',43),
+('ICT2142','T','TG/2023/013',61),
+('ICT2142','T','TG/2023/014',92),
+('ICT2142','T','TG/2023/015',68),
+
+
+('TCS2112','T','TG/2023/001',73),
+('TCS2112','T','TG/2023/002',66),
+('TCS2112','T','TG/2023/003',81),
+('TCS2112','T','TG/2023/004',90),
+('TCS2112','T','TG/2023/005',38),
+('TCS2112','T','TG/2023/006',72),
+('TCS2112','T','TG/2023/007',46),
+('TCS2112','T','TG/2023/008',65),
+('TCS2112','T','TG/2023/009',99),
+('TCS2112','T','TG/2023/010',60),
+('TCS2112','T','TG/2023/012',90),
+('TCS2112','T','TG/2023/013',38),
+('TCS2112','T','TG/2023/014',72),
+('TCS2112','T','TG/2023/015',46),
+
+('TCS2122','T','TG/2023/001',75),
+('TCS2122','T','TG/2023/002',85),
+('TCS2122','T','TG/2023/003',65),
+('TCS2122','T','TG/2023/004',76),
+('TCS2122','T','TG/2023/005',89),
+('TCS2122','T','TG/2023/006',81),
+('TCS2122','T','TG/2023/007',73),
+('TCS2122','T','TG/2023/008',61),
+('TCS2122','T','TG/2023/009',52),
+('TCS2122','T','TG/2023/010',98),
+('TCS2122','T','TG/2023/012',89),
+('TCS2122','T','TG/2023/013',81),
+('TCS2122','T','TG/2023/014',73),
+('TCS2122','T','TG/2023/015',61);
