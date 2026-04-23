@@ -1,0 +1,79 @@
+User
+
+--- USER TABLE ---
+
+
+
+CREATE TABLE USER(
+	User_id CHAR(12)  NOT NULL,
+	Role VARCHAR(30) NOT NULL,
+	Password CHAR(255) NOT NULL,
+
+	PRIMARY KEY(User_id)
+
+);
+
+DELIMITER //
+CREATE TRIGGER before_user_insert
+BEFORE INSERT ON User
+FOR EACH ROW
+BEGIN
+    -- Uses SHA2-256 for hashing
+    SET NEW.Password = SHA2(NEW.Password, 256);
+END;
+//
+
+
+
+--- INSERT DATA ---
+
+INSERT INTO USER
+(User_id,Role,Password) -- Must use 'Passwod'
+VALUES
+('Admin/Fot/01','Admin','Admin1@fot'),
+
+('Dean/Fot/001','Dean','Dean1@fot'),
+
+('LEC/001','Lecturer','Lec1@fot'),
+('LEC/002','Lecturer','Lec2@fot'),
+('LEC/003','Lecturer','Lec3@fot'),
+('LEC/004','Lecturer','Lec4@fot'),
+('LEC/005','Lecturer','Lec5@fot'),
+('LEC/006','Lecturer','Lec6@fot'),
+('LEC/007','Lecturer','Lec7@fot'),
+('LEC/008','Lecturer','Lec8@fot'),
+
+('Tech/Fot/001','TO','Technical1@fot'), 
+('Tech/Fot/002','TO','Technical1@fot'), 
+('Tech/Fot/003','TO','Technical1@fot'), 
+('Tech/Fot/004','TO','Technical1@fot'), 
+('Tech/Fot/005','TO','Technical1@fot'),
+
+('TG/2023/001','Student','Stu001@fot'),
+('TG/2023/002','Student','Stu002@fot'),
+('TG/2023/003','Student','Stu003@fot'),
+('TG/2023/004','Student','Stu004@fot'),
+('TG/2023/005','Student','Stu005@fot'),
+('TG/2023/006','Student','Stu006@fot'),
+('TG/2023/007','Student','Stu007@fot'),
+('TG/2023/008','Student','Stu008@fot'),
+('TG/2023/009','Student','Stud009@fot'),
+('TG/2023/010','Student','Stu010@fot'),
+
+('TG/2023/011','Student','Stu011@fot'),
+('TG/2023/012','Student','Stu012@fot'),
+('TG/2023/013','Student','Stu013@fot'),
+('TG/2023/014','Student','Stu0114@fot'),
+('TG/2023/015','Student','Stu015@fot'),
+
+('TG/2022/050','Student','Stu050@fot'),
+('TG/2022/051','Student','Stu051@fot'),
+('TG/2021/023', 'Student','Stud023@fot'),
+('TG/2021/088','Student','Stud088@fot'),
+('TG/2021/081','Student','Stud081@fot'),
+('TG/2020/100','Student','Stud100@fot');
+
+
+
+
+	
