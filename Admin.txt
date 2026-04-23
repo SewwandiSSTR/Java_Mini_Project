@@ -1,0 +1,22 @@
+--admin--
+CREATE TABLE Admin(
+	Admin_id CHAR(12)  NOT NULL,
+	F_name VARCHAR(50) NOT NULL,
+	L_name VARCHAR(50) NOT NULL,
+	Email VARCHAR(30) NOT NULL,
+	Dob DATE ,
+
+	PRIMARY KEY(Admin_id),
+
+    -- Foreign key 01 : Related to User
+  FOREIGN KEY (Admin_id) REFERENCES User(User_id)
+        ON UPDATE CASCADE
+);
+
+
+
+-- INSERT Admin 
+INSERT INTO Admin 
+(Admin_id,F_name,L_name,Email,Dob)
+VALUES 
+('Admin/Fot/01','Amali','Jayawardena','a.jayawardena@uni.lk','1975-08-15');
