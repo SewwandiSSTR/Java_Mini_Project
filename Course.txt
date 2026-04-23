@@ -1,0 +1,45 @@
+--- CREATE TABLE ---
+
+CREATE TABLE Course(
+  C_code CHAR(8) NOT NULL,
+  C_type ENUM('P','T') NOT NULL,
+  C_name VARCHAR(50) NOT NULL,
+  Credit INT NOT NULL,
+  Lec_id CHAR(10) NOT NULL, 
+  Dep_id CHAR(5),
+  PRIMARY KEY(C_code, C_type),
+  
+  -- Foreign key 01 : Related to Lecturer (use Lecturer(Lec_id))
+  CONSTRAINT fk_course_lec
+    FOREIGN KEY (Lec_id) REFERENCES Lecturer(Lec_id)
+    ON UPDATE CASCADE,
+
+  -- Foreign key 02 : Related to Department
+  CONSTRAINT fk_course_dep
+    FOREIGN KEY (Dep_id) REFERENCES Department(Dep_id)
+    ON UPDATE CASCADE
+);
+
+--- INSERT DATA --- 
+
+INSERT INTO Course (C_code,C_type,C_name,Credit,Lec_id,Dep_id)
+VALUES
+('ICT2142','T','Object Oriented Analysis and Design',2,'LEC/001','DICT'),
+
+('ICT2122','T','Object Oriented Programming',2,'LEC/002','DICT'),
+
+('ICT2132','P','Object Oriented Programming Practicum',4,'LEC/002','DICT'),
+
+('ICT2152','T','E-Commerce Implementation, Management and Security',2,'LEC/003','DICT'),
+
+('ICT2113','T','Data Structures and Algorithms',2,'LEC/004','DICT'),
+
+('ICT2113','P','Data Structures and Algorithms',2,'LEC/004','DICT'),
+
+('ENG2122','T','English III',2,'LEC/005','DMS'),
+
+('TCS2112','T','Business Economics',2,'LEC/006','DMS'),
+
+('TCS2112','P','Business Economics Tutorial',1,'LEC/006','DMS'),
+
+('TCS2122','T','Soft Skills',2,'LEC/007','DMS');
