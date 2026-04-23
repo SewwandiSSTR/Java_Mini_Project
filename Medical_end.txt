@@ -1,0 +1,36 @@
+CREATE TABLE Medical_End(
+    C_code CHAR(8) NOT NULL,
+    C_type ENUM('P','T') NOT NULL,
+    Regno CHAR(12) NOT NULL,
+    Medical_id CHAR(20) UNIQUE, -- Changed to UNIQUE, not PRIMARY KEY
+    Medical_Status ENUM('Approved','Pending','Not-approved') NOT NULL,
+    Handle_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Submited_Date DATE NOT NULL,
+    Medical_Start_Date DATE NOT NULL,
+    Medical_End_Date DATE NOT NULL, 
+
+    PRIMARY KEY(Regno, C_code, C_type), -- Enforces one medical record per student per course's End exam
+
+    -- Foreign key 1: Relate to the Course
+    CONSTRAINT fk_Medical_EndCourse FOREIGN KEY(C_code, C_type) 
+        REFERENCES Course(C_code, C_type)
+        ON UPDATE CASCADE, 
+
+    -- Foreign key 2: Relate to the Student
+    CONSTRAINT fk_Medical_EndStudent FOREIGN KEY(Regno) 
+        REFERENCES User(User_id) 
+        ON UPDATE CASCADE 
+);
+
+
+-- insert data
+INSERT INTO Medical_end
+(Regno, C_code, C_type, Medical_id, Medical_Status, Submited_Date, Medical_Start_Date, Medical_End_Date)
+VALUES
+('TG/2023/004','ICT2152','T','ICT2152TG004','Approved','2026-06-02','2026-05-28','2026-06-05'),
+('TG/2023/007','ICT2113','P','ICT2113TG007','Approved','2026-06-05','2026-06-01','2026-06-10'),
+('TG/2023/008','ICT2142','T','ICT2142TG008','Approved','2026-06-09','2026-06-05','2026-06-14'),
+('TG/2023/013','ICT2122','T','ICT2122TG013','Approved','2026-06-12','2026-06-08','2026-06-18'),
+('TG/2023/010','TCS2112','T','TCS2112TG010','Approved','2025-11-15','2025-11-10','2025-11-20');
+
+
