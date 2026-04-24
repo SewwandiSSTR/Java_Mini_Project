@@ -1,0 +1,3376 @@
+User
+
+--- USER TABLE ---
+
+
+
+CREATE TABLE USER(
+	User_id CHAR(12)  NOT NULL,
+	Role VARCHAR(30) NOT NULL,
+	Password CHAR(255) NOT NULL,
+
+	PRIMARY KEY(User_id)
+
+);
+
+--- INSERT DATA ---
+
+INSERT INTO USER
+(User_id,Role,Password) -- Must use 'Passwod'
+VALUES
+('Admin/Fot/01','Admin','Admin1@fot'),
+
+('Dean/Fot/001','Dean','Dean1@fot'),
+
+('LEC/001','Lecturer','Lec1@fot'),
+('LEC/002','Lecturer','Lec2@fot'),
+('LEC/003','Lecturer','Lec3@fot'),
+('LEC/004','Lecturer','Lec4@fot'),
+('LEC/005','Lecturer','Lec5@fot'),
+('LEC/006','Lecturer','Lec6@fot'),
+('LEC/007','Lecturer','Lec7@fot'),
+('LEC/008','Lecturer','Lec8@fot'),
+
+('Tech/Fot/001','TO','Technical1@fot'), 
+('Tech/Fot/002','TO','Technical1@fot'), 
+('Tech/Fot/003','TO','Technical1@fot'), 
+('Tech/Fot/004','TO','Technical1@fot'), 
+('Tech/Fot/005','TO','Technical1@fot'),
+
+('TG/2023/001','Student','Stu001@fot'),
+('TG/2023/002','Student','Stu002@fot'),
+('TG/2023/003','Student','Stu003@fot'),
+('TG/2023/004','Student','Stu004@fot'),
+('TG/2023/005','Student','Stu005@fot'),
+('TG/2023/006','Student','Stu006@fot'),
+('TG/2023/007','Student','Stu007@fot'),
+('TG/2023/008','Student','Stu008@fot'),
+('TG/2023/009','Student','Stud009@fot'),
+('TG/2023/010','Student','Stu010@fot'),
+
+('TG/2023/011','Student','Stu011@fot'),
+('TG/2023/012','Student','Stu012@fot'),
+('TG/2023/013','Student','Stu013@fot'),
+('TG/2023/014','Student','Stu0114@fot'),
+('TG/2023/015','Student','Stu015@fot'),
+
+('TG/2022/050','Student','Stu050@fot'),
+('TG/2022/051','Student','Stu051@fot'),
+('TG/2021/023', 'Student','Stud023@fot'),
+('TG/2021/088','Student','Stud088@fot'),
+('TG/2021/081','Student','Stud081@fot'),
+('TG/2020/100','Student','Stud100@fot');
+
+
+profile
+
+--profile--
+CREATE TABLE Profile (
+    Profile_id CHAR(12) NOT NULL,
+    Created_date DATE NOT NULL,
+    Profile_path VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY(Profile_id),
+
+   CONSTRAINT fk_profile_user FOREIGN KEY (Profile_id) REFERENCES User(User_id)
+    ON UPDATE CASCADE ON DELETE CASCADE
+
+);
+
+
+INSERT INTO Profile
+(Profile_id,Created_date,Profile_path)
+VALUES
+('TG/2023/001','2025-01-21','001.jpg'),
+('TG/2023/002','2025-01-21','002.jpg'),
+('TG/2023/003','2025-01-21','003.jpg'),
+('TG/2023/004','2025-01-21','004.jpg'),
+('TG/2023/005','2025-01-21','005.jpg'),
+('TG/2023/006','2025-01-21','006.jpg'),
+('TG/2023/007','2025-01-21','007.jpg'),
+('TG/2023/008','2025-01-21','008.jpg'),
+('TG/2023/009','2025-01-21','009.jpg'),
+('TG/2023/010','2025-01-21','010.jpg'),
+('TG/2023/011','2025-01-21','011.jpg'),
+('TG/2023/012','2025-01-21','012.jpg'),
+('TG/2023/013','2025-01-21','013.jpg'),
+('TG/2023/014','2025-01-21','014.jpg'),
+('TG/2023/015','2025-01-21','015.jpg'),
+('TG/2022/050','2024-01-10','050.jpg'),
+('TG/2022/051','2024-01-10','051.jpg'),
+('TG/2021/023','2023-01-15','023.jpg'),
+('TG/2021/088','2023-01-15','088.jpg'),
+('TG/2020/100','2022-01-18','100.jpg'),
+
+('Admin/Fot/01','2019-01-05','a1.jpg'),
+
+('Dean/Fot/001','2019-01-05','d1.jpg'),
+
+('Tech/Fot/001','2020-01-05','t1.jpg'),
+('Tech/Fot/002','2020-01-05','t2.jpg'),
+('Tech/Fot/003','2021-05-20','t3.jgp'),
+('Tech/Fot/004','2021-09-12','t4.jpg'),
+('Tech/Fot/005','2024-02-10','t5.jpg'),
+
+('Lec/001','2019-10-16','l1.jpg'),
+('Lec/002','2020-02-05','l2.jpg'),
+('Lec/003','2020-03-17','l3.jpg'),
+('Lec/004','2020-03-17','l4.jpg'),
+('Lec/005','2021-05-06','l5.jpg'),
+('Lec/006','2021-08-25','l6.jpg'),
+('Lec/007','2024-04-20','l7.jpg'),
+('Lec/008','2026-02-18','l8.jpg');
+
+
+admin
+
+-- Admin
+CREATE TABLE Admin(
+	Admin_id CHAR(12)  NOT NULL,
+	F_name VARCHAR(50) NOT NULL,
+	L_name VARCHAR(50) NOT NULL,
+	Email VARCHAR(30) NOT NULL,
+	Dob DATE ,
+
+	PRIMARY KEY(Admin_id),
+
+    -- Foreign key 01 : Related to User
+  FOREIGN KEY (Admin_id) REFERENCES User(User_id)
+        ON UPDATE CASCADE
+);
+
+
+
+-- INSERT Admin 
+INSERT INTO Admin 
+(Admin_id,F_name,L_name,Email,Dob)
+VALUES 
+('Admin/Fot/01','Amali','Jayawardena','a.jayawardena@uni.lk','1975-08-15');
+
+
+student
+
+--student--
+CREATE TABLE Student (
+  Reg_no CHAR(12) NOT NULL,
+  Fname VARCHAR(50),
+  Lname VARCHAR(50),
+  dob DATE, 
+  email VARCHAR(100) NOT NULL,
+  S_type VARCHAR(10) NOT NULL,
+ 
+
+  PRIMARY KEY (Reg_no),
+
+ 
+     CONSTRAINT fk_student_user FOREIGN KEY (Reg_no) REFERENCES User(User_id)
+    ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+-- insert data
+INSERT INTO Student
+(Reg_no,Fname,Lname,dob,email, S_type)
+VALUES
+('TG/2023/001', 'Senali','Wijesinghe', '2003-02-18', 'senali.w@uni.lk','Proper'),
+('TG/2023/002', 'Mahela', 'Gamage', '2003-10-25','mahela.g@uni.lk','Proper'),
+('TG/2023/003', 'Ruvini','Bandara', '2003-07-07','ruvini.b@uni.lk','Proper'),
+('TG/2023/004', 'Kasun', 'Liyanage', '2002-04-12','kasun.l@uni.lk','Proper'),
+('TG/2023/005', 'Nethmi', 'Fernando', '2004-01-03','nethmi.f@uni.lk','Proper'),
+('TG/2023/006', 'Charith', 'Jayasinghe', '2000-12-19','charith.j@uni.lk','Proper'),
+('TG/2023/007', 'Malith', 'Jayaweera', '2002-11-19','malith.jaya@uni.lk','Proper'),
+('TG/2023/008', 'Devini','Fonseka', '2003-09-08','devini.f@uni.lk','Proper'),
+('TG/2023/009', 'Praveen','Abeyrathne', '2003-05-27','praveen.a@uni.lk','Proper'),
+('TG/2023/010', 'Tharuka','Rodrigo', '2001-03-01','tharuka.r@uni.lk','Proper'),
+
+('TG/2023/011', 'Nayana','Kaluarachchi', '2003-06-16','nayana.k@uni.lk','Suspend'),
+('TG/2023/012', 'Yenushi','Wickramasinghe', '2003-04-18', 'yenushi.w@uni.lk','Proper'),
+('TG/2023/013', 'Saheli', 'Perera', '2003-06-25','saheli.p@uni.lk','Proper'),
+('TG/2023/014', 'Guvini','Bandara', '2003-05-07','guvini.b@uni.lk','Proper'),
+('TG/2023/015', 'Kamal', 'Perera', '2002-04-17','kamal.p@uni.lk','Proper'),
+
+('TG/2022/050', 'Viraj','Costa', '2002-04-05','viraj.c@uni.lk','Repeat'),
+('TG/2022/051', 'Malith','Silva', '2001-11-29','malith.s@uni.lk','Repeat'),
+('TG/2021/023', 'Gayani','Perera', '2000-08-14','gayani.p@uni.lk','Repeat'),
+('TG/2021/088', 'Buddika','Sadaruwan', '2000-01-20','buddika.s@uni.lk','Repeat'),
+('TG/2021/081', 'Dinith','Maduranga', '2002-01-20','dinith.m@uni.lk','Suspend'),
+('TG/2020/100', 'Sachini','Karunaratne', '1999-07-03','sachini.k@uni.lk','Repeat');
+
+
+
+Technical_officer
+
+ -- Technical_officer
+CREATE TABLE Technical_officer(
+    Tec_id CHAR(12) NOT NULL,
+    F_Name VARCHAR(50) NOT NULL,
+    L_Name VARCHAR(50) NOT NULL,
+    Email VARCHAR(30) NOT NULL,
+    Dob DATE,
+    
+    PRIMARY KEY(Tec_id),
+
+    -- Foreign key 01 : Related to User
+    FOREIGN KEY (Tec_id) REFERENCES User(User_id)
+        ON UPDATE CASCADE
+);
+
+
+
+-- Insert Values
+-- TO Tech_officer
+INSERT INTO Technical_officer
+	(Tec_id,F_Name,L_Name,Email,Dob)
+VALUES
+('Tech/Fot/001','Dilini','Rathnayake','d.rathnayake@uni.lk','1987-03-08'),
+('Tech/Fot/002','Asela','Senanayake','a.senanayake@uni.lk','1994-11-03'),
+('Tech/Fot/003','Priyanka','Hewage','p.hewage@uni.lk','1982-12-15'),
+('Tech/Fot/004','Saman','Rajapaksha','s.rajapaksha@uni.lk','1976-06-28'),
+('Tech/Fot/005','Malani','De Silva','m.desilva@uni.lk','1968-10-18');
+
+
+
+
+
+Department
+
+--- CREATE TABLE ---
+
+CREATE TABLE Department(
+
+  Dep_id CHAR(5)  NOT NULL,
+  Dep_name VARCHAR(50)  NOT NULL,
+  PRIMARY KEY(Dep_id)
+
+);
+
+--- INSERT DATA ---
+
+INSERT INTO Department
+(Dep_id,Dep_name)
+VALUES
+('DICT','Information and Communication Technology'),
+('DMS','Multidiciplinary Studies'),
+('DENT','Engineering Technology');
+
+
+
+Lecturer
+
+--- CREATE TABLE ---
+
+CREATE TABLE Lecturer(
+  Lec_id CHAR(10)  NOT NULL,
+  Fullname VARCHAR(100),
+  position VARCHAR(30),
+  email VARCHAR(30)  NOT NULL,
+  gender ENUM('Male','Female','Other'),
+  dob DATE,
+  Dep_id CHAR(5),
+
+  PRIMARY KEY(Lec_id),
+
+  -- Foreign key 01 : Related to Department
+  CONSTRAINT fk_lec_dep
+  FOREIGN KEY (Dep_id) REFERENCES Department(Dep_id)
+  ON UPDATE CASCADE,
+
+-- Foreign key 02 : Related to User
+  FOREIGN KEY (Lec_id) REFERENCES User(User_id)
+        ON UPDATE CASCADE
+);
+
+--- INSERT DATA ---
+
+INSERT INTO Lecturer
+(Lec_id,Fullname,position,email,Gender,Dob,Dep_id)
+VALUES
+('LEC/001','A.S.Kumara','Professor','Kumara@gmail.com','Male','1993-02-13','DICT'),
+('LEC/002','K.A.Wasantha','Associate Professor','Wasantha@gmail.com','Female','1992-05-26','DICT'),
+('LEC/003','S.K.D.Vitharana','Senior Lecturer','vitharana@gmail.com','Male','1991-01-24','DICT'),
+('LEC/004','U.D.Asela','Senior Lecturer','Asela@gmail.com','Female','1995-03-14','DICT'),
+('LEC/005','W.D.Roopasinghe','Senior Lecturer','Roopasinghe@gmail.com','Female','1991-07-15','DMS'),
+('LEC/006','K.D.S.Jayasooriya','Senior Lecturer','Jayasooriya@gmail.com','Female','1994-08-30','DENT'),
+('LEC/007','J.S.Weerakkody','Assistant Lecturer','Weerakkody@gmail.com','Male','1995-05-17','DMS'),
+('LEC/008','G.D.Silva','Assistant Lecturer','Silva@gmail.com','Male','1997-06-16','DICT');
+
+
+Course
+
+--- CREATE TABLE ---
+
+CREATE TABLE Course(
+  C_code CHAR(8) NOT NULL,
+  C_type ENUM('P','T') NOT NULL,
+  C_name VARCHAR(50) NOT NULL,
+  Credit INT NOT NULL,
+  Lec_id CHAR(10) NOT NULL, 
+  Dep_id CHAR(5),
+  PRIMARY KEY(C_code, C_type),
+  
+  -- Foreign key 01 : Related to Lecturer (use Lecturer(Lec_id))
+  CONSTRAINT fk_course_lec
+    FOREIGN KEY (Lec_id) REFERENCES Lecturer(Lec_id)
+    ON UPDATE CASCADE,
+
+  -- Foreign key 02 : Related to Department
+  CONSTRAINT fk_course_dep
+    FOREIGN KEY (Dep_id) REFERENCES Department(Dep_id)
+    ON UPDATE CASCADE
+);
+
+--- INSERT DATA --- 
+
+INSERT INTO Course (C_code,C_type,C_name,Credit,Lec_id,Dep_id)
+VALUES
+('ICT2142','T','Object Oriented Analysis and Design',2,'LEC/001','DICT'),
+
+('ICT2122','T','Object Oriented Programming',2,'LEC/002','DICT'),
+
+('ICT2132','P','Object Oriented Programming Practicum',4,'LEC/002','DICT'),
+
+('ICT2152','T','E-Commerce Implementation, Management and Security',2,'LEC/003','DICT'),
+
+('ICT2113','T','Data Structures and Algorithms',2,'LEC/004','DICT'),
+
+('ICT2113','P','Data Structures and Algorithms',2,'LEC/004','DICT'),
+
+('ENG2122','T','English III',2,'LEC/005','DMS'),
+
+('TCS2112','T','Business Economics',2,'LEC/006','DMS'),
+
+('TCS2112','P','Business Economics Tutorial',1,'LEC/006','DMS'),
+
+('TCS2122','T','Soft Skills',2,'LEC/007','DMS');
+
+
+
+
+
+Course_enrollment
+
+--COURSE ENROLLMENT
+CREATE TABLE Course_Enrollment(
+	C_code CHAR(8) NOT NULL,
+	C_type ENUM('P','T') NOT NULL,
+	Regno CHAR(12) NOT NULL,
+	PRIMARY KEY(C_code,C_type,Regno),
+
+	-- Foreign key 1:Relate to the Course
+	CONSTRAINT fk_EnrollCourse FOREIGN KEY(C_code,C_type) REFERENCES Course(C_code,C_type)
+    ON UPDATE CASCADE,
+
+	-- Foreign key 2:Relate to the Student
+	CONSTRAINT fk_EnrollStudent FOREIGN KEY(Regno) REFERENCES User(User_id) 
+    ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- insert data
+INSERT INTO Course_Enrollment
+(Regno,C_code,C_type)
+VALUES
+('TG/2023/001','ENG2122','T'),
+('TG/2023/002','ENG2122','T'),
+('TG/2023/003','ENG2122','T'),
+('TG/2023/004','ENG2122','T'),
+('TG/2023/006','ENG2122','T'),
+('TG/2023/007','ENG2122','T'),
+('TG/2023/008','ENG2122','T'),
+('TG/2023/009','ENG2122','T'),
+('TG/2023/010','ENG2122','T'),
+('TG/2023/011','ENG2122','T'),
+('TG/2023/012','ENG2122','T'),
+('TG/2023/013','ENG2122','T'),
+('TG/2023/014','ENG2122','T'),
+('TG/2023/015','ENG2122','T'),
+
+
+('TG/2023/001','TCS2112','T'),
+('TG/2023/002','TCS2112','T'),
+('TG/2023/003','TCS2112','T'),
+('TG/2023/004','TCS2112','T'),
+('TG/2023/005','TCS2112','T'),
+('TG/2023/006','TCS2112','T'),
+('TG/2023/007','TCS2112','T'),
+('TG/2023/008','TCS2112','T'),
+('TG/2023/009','TCS2112','T'),
+('TG/2023/010','TCS2112','T'),
+('TG/2023/011','TCS2112','T'),
+('TG/2023/012','TCS2112','T'),
+('TG/2023/013','TCS2112','T'),
+('TG/2023/014','TCS2112','T'),
+('TG/2023/015','TCS2112','T'),
+
+
+('TG/2023/001','TCS2112','P'),
+('TG/2023/002','TCS2112','P'),
+('TG/2023/003','TCS2112','P'),
+('TG/2023/004','TCS2112','P'),
+('TG/2023/005','TCS2112','P'),
+('TG/2023/006','TCS2112','P'),
+('TG/2023/007','TCS2112','P'),
+('TG/2023/008','TCS2112','P'),
+('TG/2023/009','TCS2112','P'),
+('TG/2023/010','TCS2112','P'),
+('TG/2023/011','TCS2112','P'),
+('TG/2023/012','TCS2112','P'),
+('TG/2023/013','TCS2112','P'),
+('TG/2023/014','TCS2112','P'),
+('TG/2023/015','TCS2112','P'),
+
+
+('TG/2023/001','ICT2113','T'),
+('TG/2023/002','ICT2113','T'),
+('TG/2023/003','ICT2113','T'),
+('TG/2023/004','ICT2113','T'),
+('TG/2023/005','ICT2113','T'),
+('TG/2023/006','ICT2113','T'),
+('TG/2023/007','ICT2113','T'),
+('TG/2023/008','ICT2113','T'),
+('TG/2023/009','ICT2113','T'),
+('TG/2023/010','ICT2113','T'),
+('TG/2023/011','ICT2113','T'),
+('TG/2023/012','ICT2113','T'),
+('TG/2023/013','ICT2113','T'),
+('TG/2023/014','ICT2113','T'),
+('TG/2023/015','ICT2113','T'),
+
+
+('TG/2023/001','ICT2113','P'),
+('TG/2023/002','ICT2113','P'),
+('TG/2023/003','ICT2113','P'),
+('TG/2023/004','ICT2113','P'),
+('TG/2023/005','ICT2113','P'),
+('TG/2023/006','ICT2113','P'),
+('TG/2023/007','ICT2113','P'),
+('TG/2023/008','ICT2113','P'),
+('TG/2023/009','ICT2113','P'),
+('TG/2023/010','ICT2113','P'),
+('TG/2023/011','ICT2113','P'),
+('TG/2023/012','ICT2113','P'),
+('TG/2023/013','ICT2113','P'),
+('TG/2023/014','ICT2113','P'),
+('TG/2023/015','ICT2113','P'),
+
+
+('TG/2023/001','ICT2142','T'),
+('TG/2023/002','ICT2142','T'),
+('TG/2023/003','ICT2142','T'),
+('TG/2023/004','ICT2142','T'),
+('TG/2023/005','ICT2142','T'),
+('TG/2023/006','ICT2142','T'),
+('TG/2023/007','ICT2142','T'),
+('TG/2023/008','ICT2142','T'),
+('TG/2023/009','ICT2142','T'),
+('TG/2023/010','ICT2142','T'),
+('TG/2023/011','ICT2142','T'),
+('TG/2023/012','ICT2142','T'),
+('TG/2023/013','ICT2142','T'),
+('TG/2023/014','ICT2142','T'),
+('TG/2023/015','ICT2142','T'),
+
+
+('TG/2023/001','ICT2122','T'),
+('TG/2023/002','ICT2122','T'),
+('TG/2023/003','ICT2122','T'),
+('TG/2023/004','ICT2122','T'),
+('TG/2023/005','ICT2122','T'),
+('TG/2023/006','ICT2122','T'),
+('TG/2023/007','ICT2122','T'),
+('TG/2023/008','ICT2122','T'),
+('TG/2023/009','ICT2122','T'),
+('TG/2023/010','ICT2122','T'),
+('TG/2023/011','ICT2122','T'),
+('TG/2023/012','ICT2122','T'),
+('TG/2023/013','ICT2122','T'),
+('TG/2023/014','ICT2122','T'),
+('TG/2023/015','ICT2122','T'),
+
+('TG/2023/001','ICT2152','T'),
+('TG/2023/002','ICT2152','T'),
+('TG/2023/003','ICT2152','T'),
+('TG/2023/004','ICT2152','T'),
+('TG/2023/005','ICT2152','T'),
+('TG/2023/006','ICT2152','T'),
+('TG/2023/007','ICT2152','T'),
+('TG/2023/008','ICT2152','T'),
+('TG/2023/009','ICT2152','T'),
+('TG/2023/010','ICT2152','T'),
+('TG/2023/011','ICT2152','T'),
+('TG/2023/012','ICT2152','T'),
+('TG/2023/013','ICT2152','T'),
+('TG/2023/014','ICT2152','T'),
+('TG/2023/015','ICT2152','T'),
+
+
+('TG/2023/001','ICT2132','P'),
+('TG/2023/002','ICT2132','P'),
+('TG/2023/003','ICT2132','P'),
+('TG/2023/004','ICT2132','P'),
+('TG/2023/005','ICT2132','P'),
+('TG/2023/006','ICT2132','P'),
+('TG/2023/007','ICT2132','P'),
+('TG/2023/008','ICT2132','P'),
+('TG/2023/009','ICT2132','P'),
+('TG/2023/010','ICT2132','P'),
+('TG/2023/011','ICT2132','P'),
+('TG/2023/012','ICT2132','P'),
+('TG/2023/013','ICT2132','P'),
+('TG/2023/014','ICT2132','P'),
+('TG/2023/015','ICT2132','P'),
+
+
+('TG/2023/001','TCS2122','T'),
+('TG/2023/002','TCS2122','T'),
+('TG/2023/003','TCS2122','T'),
+('TG/2023/004','TCS2122','T'),
+('TG/2023/005','TCS2122','T'),
+('TG/2023/006','TCS2122','T'),
+('TG/2023/007','TCS2122','T'),
+('TG/2023/008','TCS2122','T'),
+('TG/2023/009','TCS2122','T'),
+('TG/2023/010','TCS2122','T'),
+('TG/2023/011','TCS2122','T'),
+('TG/2023/012','TCS2122','T'),
+('TG/2023/013','TCS2122','T'),
+('TG/2023/014','TCS2122','T'),
+('TG/2023/015','TCS2122','T'),
+
+
+
+('TG/2022/050','TCS2112','T'),
+('TG/2022/050','ICT2113','T'),
+('TG/2021/023','TCS2112','T'),
+('TG/2021/023','ICT2113','T'),
+('TG/2021/023','ICT2113','P'),
+('TG/2021/088','ICT2113','T'),
+('TG/2021/088','ICT2122','T'),
+('TG/2021/023','ICT2142','T');
+
+
+
+Time Table
+
+--create table--
+CREATE TABLE Time_table(
+		Day ENUM('Monday','Tuesday','Wednesday','Thursday','Friday') NOT NULL,
+		Start_time TIME NOT NULL,
+		End_time TIME NOT NULL,
+		C_code CHAR(8) NOT NULL,
+		C_type ENUM('P','T') NOT NULL,
+		Lec_id CHAR(10)  NOT NULL,
+
+		PRIMARY KEY(Day,C_code,C_type),
+
+		FOREIGN KEY (Lec_id) REFERENCES User(User_id)
+       		ON UPDATE CASCADE,
+		
+		 CONSTRAINT fk_TimetableCourse FOREIGN KEY(C_code, C_type) 
+        	REFERENCES Course(C_code, C_type) 
+        	ON UPDATE CASCADE 
+    );
+
+--insert data---
+INSERT INTO Time_table( Day,Start_time,End_time,C_code,C_type,Lec_id)
+VALUES
+('Monday','09:00:00','11:00:00','ICT2113','T','LEC/004'),
+('Monday','11:00:00','01:00:00','ICT2113','p','LEC/004'),
+('Monday','03:00:00','04:00:00','TCS2112','P','LEC/006'),
+('Tuesday','09:00:00','11:00:00','ICT2142','T','LEC/001'),
+('Wednesday','08:00:00','10:00:00','TCS2122','T','LEC/007'),
+('Wednesday','11:00:00','01:00:00','ICT2152','T','LEC/003'),
+('Thursday','09:00:00','01:00:00','ICT2122','T','LEC/002'),
+('Thursday','02:00:00','03:00:00','ICT2132','P','LEC/002'),
+('Friday','08:00:00','10:00:00','TCS2112','T','LEC/006'),
+('Friday','10:00:00','12:00:00','ENG2122','T','LEC/005');
+
+
+
+-- Attendance
+CREATE TABLE Attendance(
+	C_code CHAR(8) NOT NULL,
+	C_type ENUM('P','T') NOT NULL,
+	Regno CHAR(12) NOT NULL,
+	Week INT NOT NULL,
+    	Date Date,
+	Status ENUM('Present','Absent','Medical') NOT NULL,
+	L_Hours INT NOT NULL,
+
+	PRIMARY KEY(Regno,C_code,C_type,week),
+
+	-- Foreign key 1:Relate to the Course
+	CONSTRAINT fk_CourseAttend FOREIGN KEY(C_code,C_type) REFERENCES Course(C_code,C_type)
+    ON UPDATE CASCADE,
+
+	-- Foreign key 2:Relate to the Student
+	CONSTRAINT fk_Student_Attend FOREIGN KEY(Regno) REFERENCES User(User_id)
+    ON UPDATE CASCADE ON DELETE CASCADE
+
+);
+
+-- insert data
+INSERT INTO Attendance (Regno, C_code, C_type, Week, Status, L_Hours, Date)
+VALUES
+('TG/2023/001','ENG2122','T',1,'Present',2,"2026-01-30"),
+('TG/2023/002','ENG2122','T',1,'Present',2,"2026-01-30"),
+('TG/2023/003','ENG2122','T',1,'Present',2,"2026-01-30"),
+('TG/2023/004','ENG2122','T',1,'Present',2,"2026-01-30"),
+('TG/2023/005','ENG2122','T',1,'Present',2,"2026-01-30"),
+('TG/2023/006','ENG2122','T',1,'Absent',2,"2026-01-30"),
+('TG/2023/007','ENG2122','T',1,'Medical',2,"2026-01-30"),
+('TG/2023/008','ENG2122','T',1,'Present',2,"2026-01-30"),
+('TG/2023/009','ENG2122','T',1,'Present',2,"2026-01-30"),
+('TG/2023/010','ENG2122','T',1,'Present',2,"2026-01-30"),
+('TG/2023/012','ENG2122','T',1,'Absent',2,"2026-01-30"),
+('TG/2023/013','ENG2122','T',1,'Medical',2,"2026-01-30"),
+('TG/2023/014','ENG2122','T',1,'Present',2,"2026-01-30"),
+('TG/2023/015','ENG2122','T',1,'Present',2,"2026-01-30"),
+
+('TG/2023/001','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/002','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/003','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/004','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/005','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/006','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/007','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/008','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/009','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/010','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/012','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/013','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/014','ICT2113','T',1,'Present',2,"2026-01-26"),
+('TG/2023/015','ICT2113','T',1,'Present',2,"2026-01-26"),
+
+('TG/2023/001','ICT2113','P',1,'Present',2,"2026-01-26"),
+('TG/2023/002','ICT2113','P',1,'Present',2,"2026-01-26"),
+('TG/2023/003','ICT2113','P',1,'Present',2,"2026-01-26"),
+('TG/2023/004','ICT2113','P',1,'Present',2,"2026-01-26"),
+('TG/2023/005','ICT2113','P',1,'Present',2,"2026-01-26"),
+('TG/2023/006','ICT2113','P',1,'Present',2,"2026-01-26"),
+('TG/2023/007','ICT2113','P',1,'Present',2,"2026-01-26"),
+('TG/2023/008','ICT2113','P',1,'Present',2,"2026-01-26"),
+('TG/2023/009','ICT2113','P',1,'Absent',2,"2026-01-26"),
+('TG/2023/010','ICT2113','P',1,'Present',2,"2026-01-26"),
+('TG/2023/012','ICT2113','P',1,'Present',2,"2026-01-26"),
+('TG/2023/013','ICT2113','P',1,'Present',2,"2026-01-26"),
+('TG/2023/014','ICT2113','P',1,'Present',2,"2026-01-26"),
+('TG/2023/015','ICT2113','P',1,'Present',2,"2026-01-26"),
+
+
+('TG/2023/001','ICT2142','T',1,'Present',2,"2026-01-27"),
+('TG/2023/002','ICT2142','T',1,'Present',2,"2026-01-27"),
+('TG/2023/003','ICT2142','T',1,'Present',2,"2026-01-27"),
+('TG/2023/004','ICT2142','T',1,'Medical',2,"2026-01-27"),
+('TG/2023/005','ICT2142','T',1,'Present',2,"2026-01-27"),
+('TG/2023/006','ICT2142','T',1,'Absent',2,"2026-01-27"),
+('TG/2023/007','ICT2142','T',1,'Present',2,"2026-01-27"),
+('TG/2023/008','ICT2142','T',1,'Present',2,"2026-01-27"),
+('TG/2023/009','ICT2142','T',1,'Present',2,"2026-01-27"),
+('TG/2023/010','ICT2142','T',1,'Present',2,"2026-01-27"),
+('TG/2023/012','ICT2142','T',1,'Present',2,"2026-01-27"),
+('TG/2023/013','ICT2142','T',1,'Present',2,"2026-01-27"),
+('TG/2023/014','ICT2142','T',1,'Present',2,"2026-01-27"),
+('TG/2023/015','ICT2142','T',1,'Present',2,"2026-01-27"),
+
+
+('TG/2023/001','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/002','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/003','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/004','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/005','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/006','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/007','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/008','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/009','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/010','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/012','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/013','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/014','ICT2122','T',1,'Present',2,"2026-01-29"),
+('TG/2023/015','ICT2122','T',1,'Present',2,"2026-01-29"),
+
+
+('TG/2023/001','ICT2132','P',1,'Present',4,"2026-01-29"),
+('TG/2023/002','ICT2132','P',1,'Present',4,"2026-01-29"),
+('TG/2023/003','ICT2132','P',1,'Present',4,"2026-01-29"),
+('TG/2023/004','ICT2132','P',1,'Present',4,"2026-01-29"),
+('TG/2023/005','ICT2132','P',1,'Present',4,"2026-01-29"),
+('TG/2023/006','ICT2132','P',1,'Present',4,"2026-01-29"),
+('TG/2023/007','ICT2132','P',1,'Present',4,"2026-01-29"),
+('TG/2023/008','ICT2132','P',1,'Present',4,"2026-01-29"),
+('TG/2023/009','ICT2132','P',1,'Present',4,"2026-01-29"),
+('TG/2023/010','ICT2132','P',1,'Present',4,"2026-01-29"),
+('TG/2023/012','ICT2132','P',1,'Present',4,"2026-01-29"),
+('TG/2023/013','ICT2132','P',1,'Present',4,"2026-01-29"),
+('TG/2023/014','ICT2132','P',1,'Absent',4,"2026-01-29"),
+('TG/2023/015','ICT2132','P',1,'Present',4,"2026-01-29"),
+
+('TG/2023/001','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/002','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/003','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/004','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/005','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/006','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/007','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/008','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/009','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/010','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/012','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/013','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/014','ICT2152','T',1,'Present',2,"2026-01-28"),
+('TG/2023/015','ICT2152','T',1,'Present',2,"2026-01-28"),
+
+('TG/2023/001','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/002','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/003','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/004','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/005','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/006','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/007','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/008','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/009','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/010','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/012','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/013','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/014','TCS2112','T',1,'Present',2,"2026-01-30"),
+('TG/2023/015','TCS2112','T',1,'Present',2,"2026-01-30"),
+
+('TG/2023/001','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/002','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/003','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/004','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/005','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/006','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/007','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/008','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/009','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/010','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/012','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/013','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/014','TCS2112','P',1,'Present',1,"2026-01-26"),
+('TG/2023/015','TCS2112','P',1,'Present',1,"2026-01-26"),
+
+('TG/2023/001','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/002','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/003','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/004','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/005','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/006','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/007','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/008','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/009','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/010','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/012','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/013','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/014','TCS2122','T',1,'Present',2,"2026-01-27"),
+('TG/2023/015','TCS2122','T',1,'Present',2,"2026-01-27"),
+
+
+('TG/2023/001','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/002','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/003','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/004','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/005','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/006','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/007','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/008','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/009','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/010','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/012','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/013','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/014','ENG2122','T',2,'Present',2,"2026-02-06"),
+('TG/2023/015','ENG2122','T',2,'Present',2,"2026-02-06"),
+
+('TG/2023/001','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/002','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/003','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/004','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/005','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/006','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/007','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/008','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/009','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/010','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/012','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/013','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/014','ICT2113','T',2,'Present',2,"2026-02-02"),
+('TG/2023/015','ICT2113','T',2,'Present',2,"2026-02-02"),
+
+('TG/2023/001','ICT2113','P',2,'Present',2,"2026-02-02"),
+('TG/2023/002','ICT2113','P',2,'Present',2,"2026-02-02"),
+('TG/2023/003','ICT2113','P',2,'Present',2,"2026-02-02"),
+('TG/2023/004','ICT2113','P',2,'Present',2,"2026-02-02"),
+('TG/2023/005','ICT2113','P',2,'Present',2,"2026-02-02"),
+('TG/2023/006','ICT2113','P',2,'Absent',2,"2026-02-02"),
+('TG/2023/007','ICT2113','P',2,'Present',2,"2026-02-02"),
+('TG/2023/008','ICT2113','P',2,'Present',2,"2026-02-02"),
+('TG/2023/009','ICT2113','P',2,'Present',2,"2026-02-02"),
+('TG/2023/010','ICT2113','P',2,'Present',2,"2026-02-02"),
+('TG/2023/012','ICT2113','P',2,'Present',2,"2026-02-02"),
+('TG/2023/013','ICT2113','P',2,'Present',2,"2026-02-02"),
+('TG/2023/014','ICT2113','P',2,'Present',2,"2026-02-02"),
+('TG/2023/015','ICT2113','P',2,'Present',2,"2026-02-02"),
+
+
+('TG/2023/001','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/002','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/003','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/004','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/005','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/006','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/007','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/008','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/009','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/010','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/012','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/013','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/014','ICT2142','T',2,'Present',2,"2026-02-03"),
+('TG/2023/015','ICT2142','T',2,'Absent',2,"2026-02-03"),
+
+
+('TG/2023/001','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/002','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/003','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/004','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/005','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/006','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/007','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/008','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/009','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/010','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/012','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/013','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/014','ICT2122','T',2,'Present',2,"2026-02-05"),
+('TG/2023/015','ICT2122','T',2,'Present',2,"2026-02-05"),
+
+
+('TG/2023/001','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/002','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/003','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/004','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/005','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/006','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/007','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/008','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/009','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/010','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/012','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/013','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/014','ICT2132','P',2,'Present',4,"2026-02-05"),
+('TG/2023/015','ICT2132','P',2,'Present',4,"2026-02-05"),
+
+('TG/2023/001','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/002','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/003','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/004','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/005','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/006','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/007','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/008','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/009','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/010','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/012','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/013','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/014','ICT2152','T',2,'Present',2,"2026-02-04"),
+('TG/2023/015','ICT2152','T',2,'Present',2,"2026-02-04"),
+
+('TG/2023/001','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/002','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/003','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/004','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/005','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/006','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/007','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/008','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/009','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/010','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/012','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/013','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/014','TCS2112','T',2,'Present',2,"2026-02-06"),
+('TG/2023/015','TCS2112','T',2,'Present',2,"2026-02-06"),
+
+('TG/2023/001','TCS2112','P',2,'Present',1,"2026-02-02"),
+('TG/2023/002','TCS2112','P',2,'Present',1,"2026-02-02"),
+('TG/2023/003','TCS2112','P',2,'Present',1,"2026-02-02"),
+('TG/2023/004','TCS2112','P',2,'Present',1,"2026-02-02"),
+('TG/2023/005','TCS2112','P',2,'Present',1,"2026-02-02"),
+('TG/2023/006','TCS2112','P',2,'Present',1,"2026-02-02"),
+('TG/2023/007','TCS2112','P',2,'Present',1,"2026-02-02"),
+('TG/2023/008','TCS2112','P',2,'Present',1,"2026-02-02"),
+('TG/2023/009','TCS2112','P',2,'Present',1,"2026-02-02"),
+('TG/2023/010','TCS2112','P',2,'Absent',1,"2026-02-02"),
+('TG/2023/012','TCS2112','P',2,'Present',1,"2026-02-02"),
+('TG/2023/013','TCS2112','P',2,'Present',1,"2026-02-02"),
+('TG/2023/014','TCS2112','P',2,'Present',1,"2026-02-02"),
+('TG/2023/015','TCS2112','P',2,'Present',1,"2026-02-02"),
+
+('TG/2023/001','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/002','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/003','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/004','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/005','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/006','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/007','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/008','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/009','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/010','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/012','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/013','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/014','TCS2122','T',2,'Present',2,"2026-02-04"),
+('TG/2023/015','TCS2122','T',2,'Present',2,"2026-02-04"),
+
+('TG/2023/001','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/002','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/003','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/004','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/005','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/006','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/007','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/008','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/009','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/010','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/012','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/013','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/014','ENG2122','T',3,'Present',2,"2026-02-13"),
+('TG/2023/015','ENG2122','T',3,'Present',2,"2026-02-13"),
+
+('TG/2023/001','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/002','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/003','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/004','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/005','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/006','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/007','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/008','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/009','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/010','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/012','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/013','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/014','ICT2113','T',3,'Present',2,"2026-02-09"),
+('TG/2023/015','ICT2113','T',3,'Present',2,"2026-02-09"),
+
+('TG/2023/001','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/002','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/003','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/004','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/005','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/006','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/007','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/008','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/009','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/010','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/012','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/013','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/014','ICT2113','P',3,'Present',2,"2026-02-09"),
+('TG/2023/015','ICT2113','P',3,'Present',2,"2026-02-09"),
+
+
+('TG/2023/001','ICT2142','T',3,'Present',2,"2026-02-10"),
+('TG/2023/002','ICT2142','T',3,'Present',2,"2026-02-10"),
+('TG/2023/003','ICT2142','T',3,'Present',2,"2026-02-10"),
+('TG/2023/004','ICT2142','T',3,'Absent',2,"2026-02-10"),
+('TG/2023/005','ICT2142','T',3,'Present',2,"2026-02-10"),
+('TG/2023/006','ICT2142','T',3,'Present',2,"2026-02-10"),
+('TG/2023/007','ICT2142','T',3,'Present',2,"2026-02-10"),
+('TG/2023/008','ICT2142','T',3,'Present',2,"2026-02-10"),
+('TG/2023/009','ICT2142','T',3,'Present',2,"2026-02-10"),
+('TG/2023/010','ICT2142','T',3,'Present',2,"2026-02-10"),
+('TG/2023/012','ICT2142','T',3,'Present',2,"2026-02-10"),
+('TG/2023/013','ICT2142','T',3,'Present',2,"2026-02-10"),
+('TG/2023/014','ICT2142','T',3,'Present',2,"2026-02-10"),
+('TG/2023/015','ICT2142','T',3,'Present',2,"2026-02-10"),
+
+
+('TG/2023/001','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/002','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/003','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/004','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/005','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/006','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/007','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/008','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/009','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/010','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/012','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/013','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/014','ICT2122','T',3,'Present',2,"2026-02-12"),
+('TG/2023/015','ICT2122','T',3,'Present',2,"2026-02-12"),
+
+
+('TG/2023/001','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/002','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/003','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/004','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/005','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/006','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/007','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/008','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/009','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/010','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/012','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/013','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/014','ICT2132','P',3,'Present',4,"2026-02-12"),
+('TG/2023/015','ICT2132','P',3,'Present',4,"2026-02-12"),
+
+('TG/2023/001','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/002','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/003','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/004','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/005','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/006','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/007','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/008','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/009','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/010','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/012','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/013','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/014','ICT2152','T',3,'Present',2,"2026-02-11"),
+('TG/2023/015','ICT2152','T',3,'Present',2,"2026-02-11"),
+
+('TG/2023/001','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/002','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/003','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/004','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/005','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/006','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/007','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/008','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/009','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/010','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/012','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/013','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/014','TCS2112','T',3,'Present',2,"2026-02-13"),
+('TG/2023/015','TCS2112','T',3,'Present',2,"2026-02-13"),
+
+('TG/2023/001','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/002','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/003','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/004','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/005','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/006','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/007','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/008','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/009','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/010','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/012','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/013','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/014','TCS2112','P',3,'Present',1,"2026-02-09"),
+('TG/2023/015','TCS2112','P',3,'Present',1,"2026-02-09"),
+
+('TG/2023/001','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/002','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/003','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/004','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/005','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/006','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/007','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/008','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/009','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/010','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/012','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/013','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/014','TCS2122','T',3,'Present',2,"2026-02-11"),
+('TG/2023/015','TCS2122','T',3,'Absent',2,"2026-02-11"),
+
+('TG/2023/001','ENG2122','T',4,'Present',2,"2026-02-20"),
+('TG/2023/002','ENG2122','T',4,'Present',2,"2026-02-20"),
+('TG/2023/003','ENG2122','T',4,'Present',2,"2026-02-20"),
+('TG/2023/004','ENG2122','T',4,'Present',2,"2026-02-20"),
+('TG/2023/005','ENG2122','T',4,'Present',2,"2026-02-20"),
+('TG/2023/006','ENG2122','T',4,'Present',2,"2026-02-20"),
+('TG/2023/007','ENG2122','T',4,'Present',2,"2026-02-20"),
+('TG/2023/008','ENG2122','T',4,'Present',2,"2026-02-20"),
+('TG/2023/009','ENG2122','T',4,'Present',2,"2026-02-20"),
+('TG/2023/010','ENG2122','T',4,'Present',2,"2026-02-20"),
+('TG/2023/012','ENG2122','T',4,'Medical',2,"2026-02-20"),
+('TG/2023/013','ENG2122','T',4,'Present',2,"2026-02-20"),
+('TG/2023/014','ENG2122','T',4,'Present',2,"2026-02-20"),
+('TG/2023/015','ENG2122','T',4,'Present',2,"2026-02-20"),
+
+('TG/2023/001','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/002','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/003','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/004','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/005','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/006','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/007','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/008','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/009','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/010','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/012','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/013','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/014','ICT2113','T',4,'Present',2,"2026-02-16"),
+('TG/2023/015','ICT2113','T',4,'Present',2,"2026-02-16"),
+
+('TG/2023/001','ICT2113','P',4,'Present',2,"2026-02-16"),
+('TG/2023/002','ICT2113','P',4,'Present',2,"2026-02-16"),
+('TG/2023/003','ICT2113','P',4,'Present',2,"2026-02-16"),
+('TG/2023/004','ICT2113','P',4,'Absent',2,"2026-02-16"),
+('TG/2023/005','ICT2113','P',4,'Present',2,"2026-02-16"),
+('TG/2023/006','ICT2113','P',4,'Present',2,"2026-02-16"),
+('TG/2023/007','ICT2113','P',4,'Present',2,"2026-02-16"),
+('TG/2023/008','ICT2113','P',4,'Present',2,"2026-02-16"),
+('TG/2023/009','ICT2113','P',4,'Present',2,"2026-02-16"),
+('TG/2023/010','ICT2113','P',4,'Present',2,"2026-02-16"),
+('TG/2023/012','ICT2113','P',4,'Present',2,"2026-02-16"),
+('TG/2023/013','ICT2113','P',4,'Present',2,"2026-02-16"),
+('TG/2023/014','ICT2113','P',4,'Present',2,"2026-02-16"),
+('TG/2023/015','ICT2113','P',4,'Present',2,"2026-02-16"),
+
+
+('TG/2023/001','ICT2142','T',4,'Present',2,"2026-02-17"),
+('TG/2023/002','ICT2142','T',4,'Present',2,"2026-02-17"),
+('TG/2023/003','ICT2142','T',4,'Present',2,"2026-02-17"),
+('TG/2023/004','ICT2142','T',4,'Medical',2,"2026-02-17"),
+('TG/2023/005','ICT2142','T',4,'Present',2,"2026-02-17"),
+('TG/2023/006','ICT2142','T',4,'Medical',2,"2026-02-17"),
+('TG/2023/007','ICT2142','T',4,'Present',2,"2026-02-17"),
+('TG/2023/008','ICT2142','T',4,'Present',2,"2026-02-17"),
+('TG/2023/009','ICT2142','T',4,'Present',2,"2026-02-17"),
+('TG/2023/010','ICT2142','T',4,'Present',2,"2026-02-17"),
+('TG/2023/012','ICT2142','T',4,'Present',2,"2026-02-17"),
+('TG/2023/013','ICT2142','T',4,'Present',2,"2026-02-17"),
+('TG/2023/014','ICT2142','T',4,'Present',2,"2026-02-17"),
+('TG/2023/015','ICT2142','T',4,'Present',2,"2026-02-17"),
+
+
+('TG/2023/001','ICT2122','T',4,'Present',2,"2026-02-19"),
+('TG/2023/002','ICT2122','T',4,'Present',2,"2026-02-19"),
+('TG/2023/003','ICT2122','T',4,'Present',2,"2026-02-19"),
+('TG/2023/004','ICT2122','T',4,'Present',2,"2026-02-19"),
+('TG/2023/005','ICT2122','T',4,'Present',2,"2026-02-19"),
+('TG/2023/006','ICT2122','T',4,'Present',2,"2026-02-19"),
+('TG/2023/007','ICT2122','T',4,'Present',2,"2026-02-19"),
+('TG/2023/008','ICT2122','T',4,'Present',2,"2026-02-19"),
+('TG/2023/009','ICT2122','T',4,'Present',2,"2026-02-19"),
+('TG/2023/010','ICT2122','T',4,'Absent',2,"2026-02-19"),
+('TG/2023/012','ICT2122','T',4,'Present',2,"2026-02-19"),
+('TG/2023/013','ICT2122','T',4,'Present',2,"2026-02-19"),
+('TG/2023/014','ICT2122','T',4,'Present',2,"2026-02-19"),
+('TG/2023/015','ICT2122','T',4,'Present',2,"2026-02-19"),
+
+
+('TG/2023/001','ICT2132','P',4,'Present',4,"2026-02-19"),
+('TG/2023/002','ICT2132','P',4,'Present',4,"2026-02-19"),
+('TG/2023/003','ICT2132','P',4,'Present',4,"2026-02-19"),
+('TG/2023/004','ICT2132','P',4,'Present',4,"2026-02-19"),
+('TG/2023/005','ICT2132','P',4,'Present',4,"2026-02-19"),
+('TG/2023/006','ICT2132','P',4,'Present',4,"2026-02-19"),
+('TG/2023/007','ICT2132','P',4,'Present',4,"2026-02-19"),
+('TG/2023/008','ICT2132','P',4,'Present',4,"2026-02-19"),
+('TG/2023/009','ICT2132','P',4,'Present',4,"2026-02-19"),
+('TG/2023/010','ICT2132','P',4,'Present',4,"2026-02-19"),
+('TG/2023/012','ICT2132','P',4,'Present',4,"2026-02-19"),
+('TG/2023/013','ICT2132','P',4,'Present',4,"2026-02-19"),
+('TG/2023/014','ICT2132','P',4,'Absent',4,"2026-02-19"),
+('TG/2023/015','ICT2132','P',4,'Present',4,"2026-02-19"),
+
+('TG/2023/001','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/002','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/003','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/004','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/005','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/006','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/007','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/008','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/009','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/010','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/012','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/013','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/014','ICT2152','T',4,'Present',2,"2026-02-18"),
+('TG/2023/015','ICT2152','T',4,'Present',2,"2026-02-18"),
+
+('TG/2023/001','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/002','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/003','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/004','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/005','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/006','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/007','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/008','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/009','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/010','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/012','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/013','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/014','TCS2112','T',4,'Present',2,"2026-02-20"),
+('TG/2023/015','TCS2112','T',4,'Present',2,"2026-02-20"),
+
+('TG/2023/001','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/002','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/003','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/004','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/005','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/006','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/007','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/008','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/009','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/010','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/012','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/013','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/014','TCS2112','P',4,'Present',1,"2026-02-16"),
+('TG/2023/015','TCS2112','P',4,'Present',1,"2026-02-16"),
+
+('TG/2023/001','TCS2122','T',4,'Absent',2,"2026-02-18"),
+('TG/2023/002','TCS2122','T',4,'Present',2,"2026-02-18"),
+('TG/2023/003','TCS2122','T',4,'Present',2,"2026-02-18"),
+('TG/2023/004','TCS2122','T',4,'Present',2,"2026-02-18"),
+('TG/2023/005','TCS2122','T',4,'Present',2,"2026-02-18"),
+('TG/2023/006','TCS2122','T',4,'Present',2,"2026-02-18"),
+('TG/2023/007','TCS2122','T',4,'Present',2,"2026-02-18"),
+('TG/2023/008','TCS2122','T',4,'Present',2,"2026-02-18"),
+('TG/2023/009','TCS2122','T',4,'Present',2,"2026-02-18"),
+('TG/2023/010','TCS2122','T',4,'Present',2,"2026-02-18"),
+('TG/2023/012','TCS2122','T',4,'Present',2,"2026-02-18"),
+('TG/2023/013','TCS2122','T',4,'Present',2,"2026-02-18"),
+('TG/2023/014','TCS2122','T',4,'Present',2,"2026-02-18"),
+('TG/2023/015','TCS2122','T',4,'Present',2,"2026-02-18"),
+
+('TG/2023/001','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/002','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/003','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/004','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/005','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/006','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/007','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/008','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/009','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/010','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/012','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/013','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/014','ENG2122','T',5,'Present',2,"2026-02-27"),
+('TG/2023/015','ENG2122','T',5,'Present',2,"2026-02-27"),
+
+('TG/2023/001','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/002','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/003','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/004','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/005','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/006','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/007','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/008','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/009','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/010','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/012','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/013','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/014','ICT2113','T',5,'Present',2,"2026-02-23"),
+('TG/2023/015','ICT2113','T',5,'Present',2,"2026-02-23"),
+
+('TG/2023/001','ICT2113','P',5,'Present',2,"2026-02-23"),
+('TG/2023/002','ICT2113','P',5,'Present',2,"2026-02-23"),
+('TG/2023/003','ICT2113','P',5,'Present',2,"2026-02-23"),
+('TG/2023/004','ICT2113','P',5,'Present',2,"2026-02-23"),
+('TG/2023/005','ICT2113','P',5,'Present',2,"2026-02-23"),
+('TG/2023/006','ICT2113','P',5,'Present',2,"2026-02-23"),
+('TG/2023/007','ICT2113','P',5,'Present',2,"2026-02-23"),
+('TG/2023/008','ICT2113','P',5,'Present',2,"2026-02-23"),
+('TG/2023/009','ICT2113','P',5,'Medical',2,"2026-02-23"),
+('TG/2023/010','ICT2113','P',5,'Present',2,"2026-02-23"),
+('TG/2023/012','ICT2113','P',5,'Present',2,"2026-02-23"),
+('TG/2023/013','ICT2113','P',5,'Present',2,"2026-02-23"),
+('TG/2023/014','ICT2113','P',5,'Present',2,"2026-02-23"),
+('TG/2023/015','ICT2113','P',5,'Present',2,"2026-02-23"),
+
+
+('TG/2023/001','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/002','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/003','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/004','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/005','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/006','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/007','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/008','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/009','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/010','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/012','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/013','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/014','ICT2142','T',5,'Present',2,"2026-02-24"),
+('TG/2023/015','ICT2142','T',5,'Present',2,"2026-02-24"),
+
+
+('TG/2023/001','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/002','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/003','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/004','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/005','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/006','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/007','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/008','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/009','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/010','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/012','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/013','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/014','ICT2122','T',5,'Present',2,"2026-02-26"),
+('TG/2023/015','ICT2122','T',5,'Present',2,"2026-02-26"),
+
+
+('TG/2023/001','ICT2132','P',5,'Present',4,"2026-02-26"),
+('TG/2023/002','ICT2132','P',5,'Present',4,"2026-02-26"),
+('TG/2023/003','ICT2132','P',5,'Present',4,"2026-02-26"),
+('TG/2023/004','ICT2132','P',5,'Present',4,"2026-02-26"),
+('TG/2023/005','ICT2132','P',5,'Present',4,"2026-02-26"),
+('TG/2023/006','ICT2132','P',5,'Present',4,"2026-02-26"),
+('TG/2023/007','ICT2132','P',5,'Present',4,"2026-02-26"),
+('TG/2023/008','ICT2132','P',5,'Present',4,"2026-02-26"),
+('TG/2023/009','ICT2132','P',5,'Present',4,"2026-02-26"),
+('TG/2023/010','ICT2132','P',5,'Present',4,"2026-02-26"),
+('TG/2023/012','ICT2132','P',5,'Present',4,"2026-02-26"),
+('TG/2023/013','ICT2132','P',5,'Present',4,"2026-02-26"),
+('TG/2023/014','ICT2132','P',5,'Absent',4,"2026-02-26"),
+('TG/2023/015','ICT2132','P',5,'Present',4,"2026-02-26"),
+
+('TG/2023/001','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/002','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/003','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/004','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/005','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/006','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/007','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/008','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/009','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/010','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/012','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/013','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/014','ICT2152','T',5,'Present',2,"2026-02-25"),
+('TG/2023/015','ICT2152','T',5,'Present',2,"2026-02-25"),
+
+('TG/2023/001','TCS2112','T',5,'Present',2,"2026-02-27"),
+('TG/2023/002','TCS2112','T',5,'Present',2,"2026-02-27"),
+('TG/2023/003','TCS2112','T',5,'Present',2,"2026-02-27"),
+('TG/2023/004','TCS2112','T',5,'Present',2,"2026-02-27"),
+('TG/2023/005','TCS2112','T',5,'Absent',2,"2026-02-27"),
+('TG/2023/006','TCS2112','T',5,'Present',2,"2026-02-27"),
+('TG/2023/007','TCS2112','T',5,'Present',2,"2026-02-27"),
+('TG/2023/008','TCS2112','T',5,'Present',2,"2026-02-27"),
+('TG/2023/009','TCS2112','T',5,'Present',2,"2026-02-27"),
+('TG/2023/010','TCS2112','T',5,'Present',2,"2026-02-27"),
+('TG/2023/012','TCS2112','T',5,'Present',2,"2026-02-27"),
+('TG/2023/013','TCS2112','T',5,'Present',2,"2026-02-27"),
+('TG/2023/014','TCS2112','T',5,'Present',2,"2026-02-27"),
+('TG/2023/015','TCS2112','T',5,'Present',2,"2026-02-27"),
+
+('TG/2023/001','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/002','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/003','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/004','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/005','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/006','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/007','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/008','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/009','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/010','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/012','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/013','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/014','TCS2112','P',5,'Present',1,"2026-02-23"),
+('TG/2023/015','TCS2112','P',5,'Present',1,"2026-02-23"),
+
+('TG/2023/001','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/002','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/003','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/004','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/005','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/006','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/007','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/008','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/009','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/010','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/012','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/013','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/014','TCS2122','T',5,'Present',2,"2026-02-25"),
+('TG/2023/015','TCS2122','T',5,'Present',2,"2026-02-25"),
+
+('TG/2023/001','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/002','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/003','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/004','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/005','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/006','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/007','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/008','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/009','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/010','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/012','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/013','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/014','ENG2122','T',6,'Present',2,"2026-03-06"),
+('TG/2023/015','ENG2122','T',6,'Present',2,"2026-03-06"),
+
+('TG/2023/001','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/002','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/003','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/004','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/005','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/006','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/007','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/008','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/009','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/010','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/012','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/013','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/014','ICT2113','T',6,'Present',2,"2026-03-02"),
+('TG/2023/015','ICT2113','T',6,'Present',2,"2026-03-02"),
+
+('TG/2023/001','ICT2113','P',6,'Present',2,"2026-03-02"),
+('TG/2023/002','ICT2113','P',6,'Absent',2,"2026-03-02"),
+('TG/2023/003','ICT2113','P',6,'Present',2,"2026-03-02"),
+('TG/2023/004','ICT2113','P',6,'Present',2,"2026-03-02"),
+('TG/2023/005','ICT2113','P',6,'Present',2,"2026-03-02"),
+('TG/2023/006','ICT2113','P',6,'Present',2,"2026-03-02"),
+('TG/2023/007','ICT2113','P',6,'Present',2,"2026-03-02"),
+('TG/2023/008','ICT2113','P',6,'Present',2,"2026-03-02"),
+('TG/2023/009','ICT2113','P',6,'Present',2,"2026-03-02"),
+('TG/2023/010','ICT2113','P',6,'Present',2,"2026-03-02"),
+('TG/2023/012','ICT2113','P',6,'Present',2,"2026-03-02"),
+('TG/2023/013','ICT2113','P',6,'Present',2,"2026-03-02"),
+('TG/2023/014','ICT2113','P',6,'Present',2,"2026-03-02"),
+('TG/2023/015','ICT2113','P',6,'Present',2,"2026-03-02"),
+
+('TG/2023/001','ICT2142','T',6,'Present',2,"2026-03-03"),
+('TG/2023/002','ICT2142','T',6,'Present',2,"2026-03-03"),
+('TG/2023/003','ICT2142','T',6,'Present',2,"2026-03-03"),
+('TG/2023/004','ICT2142','T',6,'Present',2,"2026-03-03"),
+('TG/2023/005','ICT2142','T',6,'Present',2,"2026-03-03"),
+('TG/2023/006','ICT2142','T',6,'Absent',2,"2026-03-03"),
+('TG/2023/007','ICT2142','T',6,'Present',2,"2026-03-03"),
+('TG/2023/008','ICT2142','T',6,'Present',2,"2026-03-03"),
+('TG/2023/009','ICT2142','T',6,'Present',2,"2026-03-03"),
+('TG/2023/010','ICT2142','T',6,'Present',2,"2026-03-03"),
+('TG/2023/012','ICT2142','T',6,'Present',2,"2026-03-03"),
+('TG/2023/013','ICT2142','T',6,'Present',2,"2026-03-03"),
+('TG/2023/014','ICT2142','T',6,'Present',2,"2026-03-03"),
+('TG/2023/015','ICT2142','T',6,'Present',2,"2026-03-03"),
+
+('TG/2023/001','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/002','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/003','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/004','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/005','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/006','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/007','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/008','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/009','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/010','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/012','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/013','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/014','ICT2122','T',6,'Present',2,"2026-03-05"),
+('TG/2023/015','ICT2122','T',6,'Present',2,"2026-03-05"),
+
+('TG/2023/001','ICT2132','P',6,'Present',4,"2026-03-05"),
+('TG/2023/002','ICT2132','P',6,'Present',4,"2026-03-05"),
+('TG/2023/003','ICT2132','P',6,'Present',4,"2026-03-05"),
+('TG/2023/004','ICT2132','P',6,'Present',4,"2026-03-05"),
+('TG/2023/005','ICT2132','P',6,'Present',4,"2026-03-05"),
+('TG/2023/006','ICT2132','P',6,'Present',4,"2026-03-05"),
+('TG/2023/007','ICT2132','P',6,'Present',4,"2026-03-05"),
+('TG/2023/008','ICT2132','P',6,'Present',4,"2026-03-05"),
+('TG/2023/009','ICT2132','P',6,'Present',4,"2026-03-05"),
+('TG/2023/010','ICT2132','P',6,'Present',4,"2026-03-05"),
+('TG/2023/012','ICT2132','P',6,'Present',4,"2026-03-05"),
+('TG/2023/013','ICT2132','P',6,'Present',4,"2026-03-05"),
+('TG/2023/014','ICT2132','P',6,'Absent',4,"2026-03-05"),
+('TG/2023/015','ICT2132','P',6,'Present',4,"2026-03-05"),
+
+('TG/2023/001','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/002','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/003','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/004','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/005','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/006','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/007','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/008','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/009','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/010','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/012','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/013','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/014','ICT2152','T',6,'Present',2,"2026-03-04"),
+('TG/2023/015','ICT2152','T',6,'Present',2,"2026-03-04"),
+
+('TG/2023/001','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/002','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/003','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/004','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/005','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/006','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/007','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/008','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/009','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/010','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/012','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/013','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/014','TCS2112','T',6,'Present',2,"2026-03-06"),
+('TG/2023/015','TCS2112','T',6,'Present',2,"2026-03-06"),
+
+('TG/2023/001','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/002','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/003','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/004','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/005','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/006','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/007','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/008','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/009','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/010','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/012','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/013','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/014','TCS2112','P',6,'Present',1,"2026-03-02"),
+('TG/2023/015','TCS2112','P',6,'Present',1,"2026-03-02"),
+
+('TG/2023/001','TCS2122','T',6,'Present',2,"2026-03-04"),
+('TG/2023/002','TCS2122','T',6,'Present',2,"2026-03-04"),
+('TG/2023/003','TCS2122','T',6,'Present',2,"2026-03-04"),
+('TG/2023/004','TCS2122','T',6,'Present',2,"2026-03-04"),
+('TG/2023/005','TCS2122','T',6,'Present',2,"2026-03-04"),
+('TG/2023/006','TCS2122','T',6,'Present',2,"2026-03-04"),
+('TG/2023/007','TCS2122','T',6,'Present',2,"2026-03-04"),
+('TG/2023/008','TCS2122','T',6,'Present',2,"2026-03-04"),
+('TG/2023/009','TCS2122','T',6,'Medical',2,"2026-03-04"),
+('TG/2023/010','TCS2122','T',6,'Present',2,"2026-03-04"),
+('TG/2023/012','TCS2122','T',6,'Present',2,"2026-03-04"),
+('TG/2023/013','TCS2122','T',6,'Present',2,"2026-03-04"),
+('TG/2023/014','TCS2122','T',6,'Present',2,"2026-03-04"),
+('TG/2023/015','TCS2122','T',6,'Present',2,"2026-03-04"),
+
+('TG/2023/001','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/002','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/003','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/004','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/005','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/006','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/007','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/008','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/009','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/010','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/012','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/013','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/014','ENG2122','T',7,'Present',2,"2026-03-13"),
+('TG/2023/015','ENG2122','T',7,'Present',2,"2026-03-13"),
+
+('TG/2023/001','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/002','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/003','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/004','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/005','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/006','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/007','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/008','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/009','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/010','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/012','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/013','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/014','ICT2113','T',7,'Present',2,"2026-03-09"),
+('TG/2023/015','ICT2113','T',7,'Present',2,"2026-03-09"),
+
+('TG/2023/001','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/002','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/003','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/004','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/005','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/006','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/007','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/008','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/009','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/010','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/012','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/013','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/014','ICT2113','P',7,'Present',2,"2026-03-09"),
+('TG/2023/015','ICT2113','P',7,'Present',2,"2026-03-09"),
+
+('TG/2023/001','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/002','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/003','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/004','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/005','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/006','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/007','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/008','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/009','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/010','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/012','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/013','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/014','ICT2142','T',7,'Present',2,"2026-03-10"),
+('TG/2023/015','ICT2142','T',7,'Present',2,"2026-03-10"),
+
+
+('TG/2023/001','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/002','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/003','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/004','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/005','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/006','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/007','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/008','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/009','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/010','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/012','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/013','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/014','ICT2122','T',7,'Present',2,"2026-03-12"),
+('TG/2023/015','ICT2122','T',7,'Present',2,"2026-03-12"),
+
+
+('TG/2023/001','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/002','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/003','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/004','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/005','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/006','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/007','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/008','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/009','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/010','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/012','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/013','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/014','ICT2132','P',7,'Present',4,"2026-03-12"),
+('TG/2023/015','ICT2132','P',7,'Present',4,"2026-03-12"),
+
+('TG/2023/001','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/002','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/003','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/004','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/005','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/006','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/007','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/008','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/009','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/010','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/012','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/013','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/014','ICT2152','T',7,'Present',2,"2026-03-11"),
+('TG/2023/015','ICT2152','T',7,'Present',2,"2026-03-11"),
+
+('TG/2023/001','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/002','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/003','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/004','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/005','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/006','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/007','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/008','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/009','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/010','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/012','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/013','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/014','TCS2112','T',7,'Present',2,"2026-03-13"),
+('TG/2023/015','TCS2112','T',7,'Present',2,"2026-03-13"),
+
+('TG/2023/001','TCS2112','P',7,'Present',1,"2026-03-09"),
+('TG/2023/002','TCS2112','P',7,'Present',1,"2026-03-09"),
+('TG/2023/003','TCS2112','P',7,'Present',1,"2026-03-09"),
+('TG/2023/004','TCS2112','P',7,'Present',1,"2026-03-09"),
+('TG/2023/005','TCS2112','P',7,'Medical',1,"2026-03-09"),
+('TG/2023/006','TCS2112','P',7,'Present',1,"2026-03-09"),
+('TG/2023/007','TCS2112','P',7,'Present',1,"2026-03-09"),
+('TG/2023/008','TCS2112','P',7,'Present',1,"2026-03-09"),
+('TG/2023/009','TCS2112','P',7,'Present',1,"2026-03-09"),
+('TG/2023/010','TCS2112','P',7,'Present',1,"2026-03-09"),
+('TG/2023/012','TCS2112','P',7,'Present',1,"2026-03-09"),
+('TG/2023/013','TCS2112','P',7,'Present',1,"2026-03-09"),
+('TG/2023/014','TCS2112','P',7,'Present',1,"2026-03-09"),
+('TG/2023/015','TCS2112','P',7,'Present',1,"2026-03-09"),
+
+('TG/2023/001','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/002','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/003','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/004','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/005','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/006','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/007','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/008','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/009','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/010','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/012','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/013','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/014','TCS2122','T',7,'Present',2,"2026-03-11"),
+('TG/2023/015','TCS2122','T',7,'Present',2,"2026-03-11"),
+
+('TG/2023/001','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/002','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/003','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/004','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/005','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/006','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/007','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/008','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/009','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/010','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/012','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/013','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/014','ENG2122','T',8,'Present',2,"2026-03-20"),
+('TG/2023/015','ENG2122','T',8,'Present',2,"2026-03-20"),
+
+('TG/2023/001','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/002','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/003','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/004','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/005','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/006','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/007','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/008','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/009','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/010','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/012','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/013','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/014','ICT2113','T',8,'Present',2,"2026-03-16"),
+('TG/2023/015','ICT2113','T',8,'Present',2,"2026-03-16"),
+
+('TG/2023/001','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/002','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/003','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/004','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/005','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/006','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/007','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/008','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/009','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/010','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/012','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/013','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/014','ICT2113','P',8,'Present',2,"2026-03-16"),
+('TG/2023/015','ICT2113','P',8,'Present',2,"2026-03-16"),
+
+('TG/2023/001','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/002','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/003','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/004','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/005','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/006','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/007','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/008','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/009','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/010','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/012','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/013','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/014','ICT2142','T',8,'Present',2,"2026-03-17"),
+('TG/2023/015','ICT2142','T',8,'Present',2,"2026-03-17"),
+
+
+('TG/2023/001','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/002','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/003','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/004','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/005','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/006','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/007','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/008','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/009','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/010','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/012','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/013','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/014','ICT2122','T',8,'Present',2,"2026-03-19"),
+('TG/2023/015','ICT2122','T',8,'Present',2,"2026-03-19"),
+
+
+('TG/2023/001','ICT2132','P',8,'Present',4,"2026-03-19"),
+('TG/2023/002','ICT2132','P',8,'Present',4,"2026-03-19"),
+('TG/2023/003','ICT2132','P',8,'Present',4,"2026-03-19"),
+('TG/2023/004','ICT2132','P',8,'Present',4,"2026-03-19"),
+('TG/2023/005','ICT2132','P',8,'Present',4,"2026-03-19"),
+('TG/2023/006','ICT2132','P',8,'Absent',4,"2026-03-19"),
+('TG/2023/007','ICT2132','P',8,'Present',4,"2026-03-19"),
+('TG/2023/008','ICT2132','P',8,'Present',4,"2026-03-19"),
+('TG/2023/009','ICT2132','P',8,'Present',4,"2026-03-19"),
+('TG/2023/010','ICT2132','P',8,'Present',4,"2026-03-19"),
+('TG/2023/012','ICT2132','P',8,'Present',4,"2026-03-19"),
+('TG/2023/013','ICT2132','P',8,'Present',4,"2026-03-19"),
+('TG/2023/014','ICT2132','P',8,'Present',4,"2026-03-19"),
+('TG/2023/015','ICT2132','P',8,'Present',4,"2026-03-19"),
+
+('TG/2023/001','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/002','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/003','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/004','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/005','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/006','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/007','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/008','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/009','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/010','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/012','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/013','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/014','ICT2152','T',8,'Present',2,"2026-03-18"),
+('TG/2023/015','ICT2152','T',8,'Present',2,"2026-03-18"),
+
+('TG/2023/001','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/002','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/003','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/004','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/005','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/006','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/007','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/008','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/009','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/010','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/012','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/013','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/014','TCS2112','T',8,'Present',2,"2026-03-20"),
+('TG/2023/015','TCS2112','T',8,'Present',2,"2026-03-20"),
+
+('TG/2023/001','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/002','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/003','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/004','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/005','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/006','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/007','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/008','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/009','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/010','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/012','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/013','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/014','TCS2112','P',8,'Present',1,"2026-03-16"),
+('TG/2023/015','TCS2112','P',8,'Present',1,"2026-03-16"),
+
+('TG/2023/001','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/002','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/003','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/004','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/005','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/006','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/007','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/008','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/009','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/010','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/012','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/013','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/014','TCS2122','T',8,'Present',2,"2026-03-18"),
+('TG/2023/015','TCS2122','T',8,'Present',2,"2026-03-18"),
+
+('TG/2023/001','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/002','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/003','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/004','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/005','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/006','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/007','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/008','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/009','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/010','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/012','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/013','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/014','ENG2122','T',9,'Present',2,"2026-03-27"),
+('TG/2023/015','ENG2122','T',9,'Present',2,"2026-03-27"),
+
+('TG/2023/001','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/002','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/003','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/004','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/005','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/006','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/007','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/008','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/009','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/010','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/012','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/013','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/014','ICT2113','T',9,'Present',2,"2026-03-23"),
+('TG/2023/015','ICT2113','T',9,'Present',2,"2026-03-23"),
+
+('TG/2023/001','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/002','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/003','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/004','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/005','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/006','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/007','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/008','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/009','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/010','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/012','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/013','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/014','ICT2113','P',9,'Present',2,"2026-03-23"),
+('TG/2023/015','ICT2113','P',9,'Present',2,"2026-03-23"),
+
+('TG/2023/001','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/002','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/003','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/004','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/005','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/006','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/007','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/008','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/009','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/010','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/012','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/013','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/014','ICT2142','T',9,'Present',2,"2026-03-24"),
+('TG/2023/015','ICT2142','T',9,'Present',2,"2026-03-24"),
+
+
+('TG/2023/001','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/002','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/003','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/004','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/005','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/006','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/007','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/008','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/009','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/010','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/012','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/013','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/014','ICT2122','T',9,'Present',2,"2026-03-26"),
+('TG/2023/015','ICT2122','T',9,'Present',2,"2026-03-26"),
+
+('TG/2023/001','ICT2132','P',9,'Present',4,"2026-03-26"),
+('TG/2023/002','ICT2132','P',9,'Present',4,"2026-03-26"),
+('TG/2023/003','ICT2132','P',9,'Present',4,"2026-03-26"),
+('TG/2023/004','ICT2132','P',9,'Present',4,"2026-03-26"),
+('TG/2023/005','ICT2132','P',9,'Present',4,"2026-03-26"),
+('TG/2023/006','ICT2132','P',9,'Present',4,"2026-03-26"),
+('TG/2023/007','ICT2132','P',9,'Present',4,"2026-03-26"),
+('TG/2023/008','ICT2132','P',9,'Present',4,"2026-03-26"),
+('TG/2023/009','ICT2132','P',9,'Present',4,"2026-03-26"),
+('TG/2023/010','ICT2132','P',9,'Present',4,"2026-03-26"),
+('TG/2023/012','ICT2132','P',9,'Present',4,"2026-03-26"),
+('TG/2023/013','ICT2132','P',9,'Present',4,"2026-03-26"),
+('TG/2023/014','ICT2132','P',9,'Absent',4,"2026-03-26"),
+('TG/2023/015','ICT2132','P',9,'Present',4,"2026-03-26"),
+
+('TG/2023/001','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/002','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/003','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/004','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/005','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/006','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/007','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/008','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/009','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/010','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/012','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/013','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/014','ICT2152','T',9,'Present',2,"2026-03-25"),
+('TG/2023/015','ICT2152','T',9,'Present',2,"2026-03-25"),
+
+('TG/2023/001','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/002','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/003','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/004','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/005','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/006','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/007','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/008','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/009','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/010','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/012','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/013','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/014','TCS2112','T',9,'Present',2,"2026-03-27"),
+('TG/2023/015','TCS2112','T',9,'Present',2,"2026-03-27"),
+
+('TG/2023/001','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/002','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/003','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/004','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/005','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/006','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/007','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/008','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/009','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/010','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/012','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/013','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/014','TCS2112','P',9,'Present',1,"2026-03-23"),
+('TG/2023/015','TCS2112','P',9,'Present',1,"2026-03-23"),
+
+('TG/2023/001','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/002','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/003','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/004','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/005','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/006','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/007','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/008','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/009','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/010','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/012','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/013','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/014','TCS2122','T',9,'Present',2,"2026-03-25"),
+('TG/2023/015','TCS2122','T',9,'Present',2,"2026-03-25"),
+
+('TG/2023/001','ENG2122','T',10,'Present',2,"2026-04-03"),
+('TG/2023/002','ENG2122','T',10,'Present',2,"2026-04-03"),
+('TG/2023/003','ENG2122','T',10,'Present',2,"2026-04-03"),
+('TG/2023/004','ENG2122','T',10,'Present',2,"2026-04-03"),
+('TG/2023/005','ENG2122','T',10,'Present',2,"2026-04-03"),
+('TG/2023/006','ENG2122','T',10,'Absent',2,"2026-04-03"),
+('TG/2023/007','ENG2122','T',10,'Medical',2,"2026-04-03"),
+('TG/2023/008','ENG2122','T',10,'Present',2,"2026-04-03"),
+('TG/2023/009','ENG2122','T',10,'Present',2,"2026-04-03"),
+('TG/2023/010','ENG2122','T',10,'Present',2,"2026-04-03"),
+('TG/2023/012','ENG2122','T',10,'Absent',2,"2026-04-03"),
+('TG/2023/013','ENG2122','T',10,'Medical',2,"2026-04-03"),
+('TG/2023/014','ENG2122','T',10,'Present',2,"2026-04-03"),
+('TG/2023/015','ENG2122','T',10,'Present',2,"2026-04-03"),
+
+('TG/2023/001','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/002','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/003','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/004','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/005','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/006','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/007','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/008','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/009','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/010','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/012','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/013','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/014','ICT2113','T',10,'Present',2,"2026-03-30"),
+('TG/2023/015','ICT2113','T',10,'Present',2,"2026-03-30"),
+
+('TG/2023/001','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/002','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/003','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/004','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/005','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/006','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/007','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/008','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/009','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/010','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/012','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/013','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/014','ICT2113','P',10,'Present',2,"2026-03-30"),
+('TG/2023/015','ICT2113','P',10,'Present',2,"2026-03-30"),
+
+
+('TG/2023/001','ICT2142','T',10,'Present',2,"2026-03-31"),
+('TG/2023/002','ICT2142','T',10,'Present',2,"2026-03-31"),
+('TG/2023/003','ICT2142','T',10,'Present',2,"2026-03-31"),
+('TG/2023/004','ICT2142','T',10,'Absent',2,"2026-03-31"),
+('TG/2023/005','ICT2142','T',10,'Present',2,"2026-03-31"),
+('TG/2023/006','ICT2142','T',10,'Present',2,"2026-03-31"),
+('TG/2023/007','ICT2142','T',10,'Present',2,"2026-03-31"),
+('TG/2023/008','ICT2142','T',10,'Present',2,"2026-03-31"),
+('TG/2023/009','ICT2142','T',10,'Present',2,"2026-03-31"),
+('TG/2023/010','ICT2142','T',10,'Present',2,"2026-03-31"),
+('TG/2023/012','ICT2142','T',10,'Present',2,"2026-03-31"),
+('TG/2023/013','ICT2142','T',10,'Present',2,"2026-03-31"),
+('TG/2023/014','ICT2142','T',10,'Present',2,"2026-03-31"),
+('TG/2023/015','ICT2142','T',10,'Present',2,"2026-03-31"),
+
+
+('TG/2023/001','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/002','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/003','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/004','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/005','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/006','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/007','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/008','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/009','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/010','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/012','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/013','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/014','ICT2122','T',10,'Present',2,"2026-04-02"),
+('TG/2023/015','ICT2122','T',10,'Present',2,"2026-04-02"),
+
+
+('TG/2023/001','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/002','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/003','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/004','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/005','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/006','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/007','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/008','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/009','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/010','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/012','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/013','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/014','ICT2132','P',10,'Present',4,"2026-04-02"),
+('TG/2023/015','ICT2132','P',10,'Present',4,"2026-04-02"),
+
+('TG/2023/001','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/002','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/003','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/004','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/005','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/006','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/007','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/008','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/009','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/010','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/012','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/013','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/014','ICT2152','T',10,'Present',2,"2026-04-01"),
+('TG/2023/015','ICT2152','T',10,'Present',2,"2026-04-01"),
+
+('TG/2023/001','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/002','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/003','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/004','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/005','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/006','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/007','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/008','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/009','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/010','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/012','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/013','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/014','TCS2112','T',10,'Present',2,"2026-04-03"),
+('TG/2023/015','TCS2112','T',10,'Present',2,"2026-04-03"),
+
+('TG/2023/001','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/002','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/003','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/004','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/005','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/006','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/007','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/008','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/009','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/010','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/012','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/013','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/014','TCS2112','P',10,'Present',1,"2026-03-30"),
+('TG/2023/015','TCS2112','P',10,'Present',1,"2026-03-30"),
+
+('TG/2023/001','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/002','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/003','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/004','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/005','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/006','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/007','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/008','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/009','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/010','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/012','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/013','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/014','TCS2122','T',10,'Present',2,"2026-04-01"),
+('TG/2023/015','TCS2122','T',10,'Present',2,"2026-04-01"),
+
+
+('TG/2023/001','ENG2122','T',11,'Present',2,"2026-04-10"),
+('TG/2023/002','ENG2122','T',11,'Present',2,"2026-04-10"),
+('TG/2023/003','ENG2122','T',11,'Present',2,"2026-04-10"),
+('TG/2023/004','ENG2122','T',11,'Present',2,"2026-04-10"),
+('TG/2023/005','ENG2122','T',11,'Present',2,"2026-04-10"),
+('TG/2023/006','ENG2122','T',11,'Present',2,"2026-04-10"),
+('TG/2023/007','ENG2122','T',11,'Present',2,"2026-04-10"),
+('TG/2023/008','ENG2122','T',11,'Present',2,"2026-04-10"),
+('TG/2023/009','ENG2122','T',11,'Present',2,"2026-04-10"),
+('TG/2023/010','ENG2122','T',11,'Present',2,"2026-04-10"),
+('TG/2023/012','ENG2122','T',11,'Absent',2,"2026-04-10"),
+('TG/2023/013','ENG2122','T',11,'Absent',2,"2026-04-10"),
+('TG/2023/014','ENG2122','T',11,'Present',2,"2026-04-10"),
+('TG/2023/015','ENG2122','T',11,'Present',2,"2026-04-10"),
+
+('TG/2023/001','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/002','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/003','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/004','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/005','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/006','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/007','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/008','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/009','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/010','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/012','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/013','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/014','ICT2113','T',11,'Present',2,"2026-04-06"),
+('TG/2023/015','ICT2113','T',11,'Present',2,"2026-04-06"),
+
+('TG/2023/001','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/002','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/003','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/004','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/005','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/006','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/007','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/008','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/009','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/010','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/012','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/013','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/014','ICT2113','P',11,'Present',2,"2026-04-06"),
+('TG/2023/015','ICT2113','P',11,'Present',2,"2026-04-06"),
+
+('TG/2023/001','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/002','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/003','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/004','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/005','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/006','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/007','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/008','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/009','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/010','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/012','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/013','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/014','ICT2142','T',11,'Present',2,"2026-04-07"),
+('TG/2023/015','ICT2142','T',11,'Present',2,"2026-04-07"),
+
+('TG/2023/001','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/002','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/003','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/004','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/005','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/006','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/007','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/008','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/009','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/010','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/012','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/013','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/014','ICT2122','T',11,'Present',2,"2026-04-09"),
+('TG/2023/015','ICT2122','T',11,'Present',2,"2026-04-09"),
+
+('TG/2023/001','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/002','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/003','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/004','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/005','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/006','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/007','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/008','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/009','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/010','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/012','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/013','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/014','ICT2132','P',11,'Present',4,"2026-04-09"),
+('TG/2023/015','ICT2132','P',11,'Present',4,"2026-04-09"),
+
+('TG/2023/001','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/002','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/003','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/004','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/005','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/006','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/007','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/008','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/009','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/010','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/012','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/013','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/014','ICT2152','T',11,'Present',2,"2026-04-08"),
+('TG/2023/015','ICT2152','T',11,'Present',2,"2026-04-08"),
+
+('TG/2023/001','TCS2122','T',11,'Present',2,"2026-04-08"),
+('TG/2023/002','TCS2122','T',11,'Present',2,"2026-04-08"),
+('TG/2023/003','TCS2122','T',11,'Present',2,"2026-04-08"),
+('TG/2023/004','TCS2122','T',11,'Present',2,"2026-04-08"),
+('TG/2023/005','TCS2122','T',11,'Present',2,"2026-04-08"),
+('TG/2023/006','TCS2122','T',11,'Present',2,"2026-04-08"),
+('TG/2023/007','TCS2122','T',11,'Present',2,"2026-04-08"),
+('TG/2023/008','TCS2122','T',11,'Present',2,"2026-04-08"),
+('TG/2023/009','TCS2122','T',11,'Present',2,"2026-04-08"),
+('TG/2023/010','TCS2122','T',11,'Present',2,"2026-04-08"),
+('TG/2023/012','TCS2122','T',11,'Medical',2,"2026-04-08"),
+('TG/2023/013','TCS2122','T',11,'Present',2,"2026-04-08"),
+('TG/2023/014','TCS2122','T',11,'Present',2,"2026-04-08"),
+('TG/2023/015','TCS2122','T',11,'Present',2,"2026-04-08"),
+
+('TG/2023/001','TCS2112','T',11,'Present',2,"2026-04-10"),
+('TG/2023/002','TCS2112','T',11,'Present',2,"2026-04-10"),
+('TG/2023/003','TCS2112','T',11,'Present',2,"2026-04-10"),
+('TG/2023/004','TCS2112','T',11,'Present',2,"2026-04-10"),
+('TG/2023/005','TCS2112','T',11,'Absent',2,"2026-04-10"),
+('TG/2023/006','TCS2112','T',11,'Present',2,"2026-04-10"),
+('TG/2023/007','TCS2112','T',11,'Present',2,"2026-04-10"),
+('TG/2023/008','TCS2112','T',11,'Present',2,"2026-04-10"),
+('TG/2023/009','TCS2112','T',11,'Present',2,"2026-04-10"),
+('TG/2023/010','TCS2112','T',11,'Present',2,"2026-04-10"),
+('TG/2023/012','TCS2112','T',11,'Present',2,"2026-04-10"),
+('TG/2023/013','TCS2112','T',11,'Present',2,"2026-04-10"),
+('TG/2023/014','TCS2112','T',11,'Present',2,"2026-04-10"),
+('TG/2023/015','TCS2112','T',11,'Present',2,"2026-04-10"),
+
+('TG/2023/001','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/002','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/003','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/004','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/005','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/006','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/007','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/008','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/009','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/010','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/012','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/013','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/014','TCS2112','P',11,'Present',1,"2026-04-06"),
+('TG/2023/015','TCS2112','P',11,'Present',1,"2026-04-06"),
+
+
+('TG/2023/001','ENG2122','T',13,'Present',2,"2026-04-24"),
+('TG/2023/002','ENG2122','T',13,'Present',2,"2026-04-24"),
+('TG/2023/003','ENG2122','T',13,'Present',2,"2026-04-24"),
+('TG/2023/004','ENG2122','T',13,'Present',2,"2026-04-24"),
+('TG/2023/005','ENG2122','T',13,'Present',2,"2026-04-24"),
+('TG/2023/006','ENG2122','T',13,'Present',2,"2026-04-24"),
+('TG/2023/007','ENG2122','T',13,'Medical',2,"2026-04-24"),
+('TG/2023/008','ENG2122','T',13,'Present',2,"2026-04-24"),
+('TG/2023/009','ENG2122','T',13,'Present',2,"2026-04-24"),
+('TG/2023/010','ENG2122','T',13,'Present',2,"2026-04-24"),
+('TG/2023/012','ENG2122','T',13,'Absent',2,"2026-04-24"),
+('TG/2023/013','ENG2122','T',13,'Present',2,"2026-04-24"),
+('TG/2023/014','ENG2122','T',13,'Present',2,"2026-04-24"),
+('TG/2023/015','ENG2122','T',13,'Present',2,"2026-04-24"),
+
+('TG/2023/001','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/002','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/003','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/004','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/005','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/006','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/007','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/008','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/009','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/010','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/012','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/013','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/014','ICT2113','T',13,'Present',2,"2026-04-20"),
+('TG/2023/015','ICT2113','T',13,'Present',2,"2026-04-20"),
+
+('TG/2023/001','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/002','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/003','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/004','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/005','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/006','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/007','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/008','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/009','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/010','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/012','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/013','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/014','ICT2113','P',13,'Present',2,"2026-04-20"),
+('TG/2023/015','ICT2113','P',13,'Present',2,"2026-04-20"),
+
+('TG/2023/001','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/002','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/003','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/004','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/005','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/006','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/007','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/008','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/009','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/010','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/012','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/013','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/014','ICT2142','T',13,'Present',2,"2026-04-21"),
+('TG/2023/015','ICT2142','T',13,'Present',2,"2026-04-21"),
+
+('TG/2023/001','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/002','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/003','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/004','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/005','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/006','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/007','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/008','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/009','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/010','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/012','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/013','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/014','ICT2122','T',13,'Present',2,"2026-04-23"),
+('TG/2023/015','ICT2122','T',13,'Present',2,"2026-04-23"),
+
+('TG/2023/001','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/002','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/003','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/004','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/005','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/006','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/007','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/008','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/009','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/010','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/012','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/013','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/014','ICT2132','P',13,'Present',4,"2026-04-23"),
+('TG/2023/015','ICT2132','P',13,'Present',4,"2026-04-23"),
+
+('TG/2023/001','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/002','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/003','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/004','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/005','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/006','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/007','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/008','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/009','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/010','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/012','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/013','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/014','ICT2152','T',13,'Present',2,"2026-04-22"),
+('TG/2023/015','ICT2152','T',13,'Present',2,"2026-04-22"),
+
+('TG/2023/001','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/002','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/003','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/004','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/005','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/006','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/007','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/008','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/009','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/010','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/012','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/013','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/014','TCS2122','T',13,'Present',2,"2026-04-22"),
+('TG/2023/015','TCS2122','T',13,'Present',2,"2026-04-22"),
+
+('TG/2023/001','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/002','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/003','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/004','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/005','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/006','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/007','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/008','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/009','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/010','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/012','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/013','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/014','TCS2112','T',13,'Present',2,"2026-04-24"),
+('TG/2023/015','TCS2112','T',13,'Present',2,"2026-04-24"),
+
+('TG/2023/001','TCS2112','P',13,'Present',1,"2026-04-20"),
+('TG/2023/002','TCS2112','P',13,'Present',1,"2026-04-20"),
+('TG/2023/003','TCS2112','P',13,'Present',1,"2026-04-20"),
+('TG/2023/004','TCS2112','P',13,'Present',1,"2026-04-20"),
+('TG/2023/005','TCS2112','P',13,'Present',1,"2026-04-20"),
+('TG/2023/006','TCS2112','P',13,'Present',1,"2026-04-20"),
+('TG/2023/007','TCS2112','P',13,'Present',1,"2026-04-20"),
+('TG/2023/008','TCS2112','P',13,'Present',1,"2026-04-20"),
+('TG/2023/009','TCS2112','P',13,'Absent',1,"2026-04-20"),
+('TG/2023/010','TCS2112','P',13,'Present',1,"2026-04-20"),
+('TG/2023/012','TCS2112','P',13,'Present',1,"2026-04-20"),
+('TG/2023/013','TCS2112','P',13,'Present',1,"2026-04-20"),
+('TG/2023/014','TCS2112','P',13,'Present',1,"2026-04-20"),
+('TG/2023/015','TCS2112','P',13,'Present',1,"2026-04-20"),
+
+('TG/2023/001','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/002','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/003','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/004','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/005','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/006','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/007','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/008','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/009','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/010','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/012','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/013','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/014','ICT2113','T',14,'Present',2,"2026-04-27"),
+('TG/2023/015','ICT2113','T',14,'Present',2,"2026-04-27"),
+
+('TG/2023/001','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/002','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/003','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/004','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/005','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/006','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/007','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/008','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/009','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/010','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/012','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/013','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/014','ICT2113','P',14,'Present',2,"2026-04-27"),
+('TG/2023/015','ICT2113','P',14,'Present',2,"2026-04-27"),
+
+('TG/2023/001','ICT2142','T',14,'Present',2,"2026-04-28"),
+('TG/2023/002','ICT2142','T',14,'Present',2,"2026-04-28"),
+('TG/2023/003','ICT2142','T',14,'Present',2,"2026-04-28"),
+('TG/2023/004','ICT2142','T',14,'Present',2,"2026-04-28"),
+('TG/2023/005','ICT2142','T',14,'Present',2,"2026-04-28"),
+('TG/2023/006','ICT2142','T',14,'Absent',2,"2026-04-28"),
+('TG/2023/007','ICT2142','T',14,'Present',2,"2026-04-28"),
+('TG/2023/008','ICT2142','T',14,'Present',2,"2026-04-28"),
+('TG/2023/009','ICT2142','T',14,'Present',2,"2026-04-28"),
+('TG/2023/010','ICT2142','T',14,'Present',2,"2026-04-28"),
+('TG/2023/012','ICT2142','T',14,'Present',2,"2026-04-28"),
+('TG/2023/013','ICT2142','T',14,'Present',2,"2026-04-28"),
+('TG/2023/014','ICT2142','T',14,'Present',2,"2026-04-28"),
+('TG/2023/015','ICT2142','T',14,'Present',2,"2026-04-28"),
+
+('TG/2023/001','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/002','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/003','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/004','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/005','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/006','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/007','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/008','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/009','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/010','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/012','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/013','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/014','ICT2122','T',14,'Present',2,"2026-04-30"),
+('TG/2023/015','ICT2122','T',14,'Absent',2,"2026-04-30"),
+
+('TG/2023/001','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/002','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/003','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/004','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/005','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/006','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/007','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/008','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/009','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/010','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/012','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/013','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/014','ICT2132','P',14,'Present',4,"2026-04-30"),
+('TG/2023/015','ICT2132','P',14,'Present',4,"2026-04-30"),
+
+('TG/2023/001','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/002','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/003','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/004','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/005','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/006','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/007','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/008','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/009','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/010','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/012','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/013','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/014','ICT2152','T',14,'Present',2,"2026-04-29"),
+('TG/2023/015','ICT2152','T',14,'Present',2,"2026-04-29"),
+
+('TG/2023/001','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/002','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/003','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/004','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/005','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/006','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/007','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/008','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/009','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/010','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/012','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/013','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/014','TCS2122','T',14,'Present',2,"2026-04-29"),
+('TG/2023/015','TCS2122','T',14,'Present',2,"2026-04-29"),
+
+('TG/2023/001','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/002','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/003','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/004','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/005','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/006','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/007','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/008','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/009','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/010','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/012','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/013','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/014','TCS2112','P',14,'Present',1,"2026-04-27"),
+('TG/2023/015','TCS2112','P',14,'Present',1,"2026-04-27");
+
+
+
+
+Notice
+
+CREATE TABLE Notice (
+    Notice_id INT PRIMARY KEY AUTO_INCREMENT,
+    Created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Notice_description VARCHAR(200) NOT NULL,
+    Active CHAR(12) NOT NULL
+);
+
+INSERT INTO Notice
+ ( Notice_description, Active)
+ VALUES
+('University will remain closed on April 14th for Sinhala and Tamil New Year.', 'Yes'),
+('Exam registration deadline extended to April 25th.', 'Yes'),
+('All students must submit their project proposals by April 30th.', 'No'),
+('Library hours will be extended during exam week.', 'Yes'),
+('Scheduled server downtime: Saturday at 10 PM.', 'No'),
+('Scholarship applications are now open. Deadline: May 15th.', 'Yes');
+
+
+
+
+medical_mid
+
+CREATE TABLE Medical_Mid(
+    C_code CHAR(8) NOT NULL,
+    C_type ENUM('P','T') NOT NULL,
+    Regno CHAR(12) NOT NULL,
+    Medical_id CHAR(20) UNIQUE, 
+    Medical_Status ENUM('Approved','Pending','Not-approved') NOT NULL, -- Status should probably be NOT NULL
+    Submited_Date DATE NOT NULL, 
+    Medical_Start_Date DATE NOT NULL,
+    Medical_End_Date DATE NOT NULL,                                       -- Date should probably be NOT NULL
+
+    PRIMARY KEY(Regno, C_code, C_type), -- Enforces one medical record per student per course's Mid exam
+    
+    -- Foreign key 1: Relate to the Course
+    CONSTRAINT fk_Medical_MidCourse FOREIGN KEY(C_code, C_type) 
+        REFERENCES Course(C_code, C_type)
+        ON UPDATE CASCADE, 
+
+    -- Foreign key 2: Relate to the Student
+    CONSTRAINT fk_Medical_MidStudent FOREIGN KEY(Regno) 
+        REFERENCES User(User_id) 
+        ON UPDATE CASCADE 
+);
+
+INSERT INTO Medical_mid
+(Regno, C_code, C_type, Medical_id, Medical_Status, Submited_Date, Medical_Start_Date, Medical_End_Date)
+VALUES
+('TG/2023/002','ICT2142','T','ICT2142TG002','Approved','2026-03-25','2026-03-20','2026-03-28'),
+('TG/2023/004','ICT2132','P','ICT2132TG004','Approved','2026-03-26','2026-03-21','2026-03-30'),
+('TG/2023/009','ICT2113','P','ICT2113TG009','Approved','2026-03-27','2026-03-22','2026-03-31'),
+('TG/2023/010','TCS2112','T','TCS2112TG010','Approved','2026-03-30','2026-03-25','2026-04-03'),
+('TG/2023/007','ICT2152','T','ICT2152TG007','Approved','2026-03-31','2026-03-26','2026-04-04');
+
+
+
+
+Medical_end
+
+CREATE TABLE Medical_End(
+    C_code CHAR(8) NOT NULL,
+    C_type ENUM('P','T') NOT NULL,
+    Regno CHAR(12) NOT NULL,
+    Medical_id CHAR(20) UNIQUE, -- Changed to UNIQUE, not PRIMARY KEY
+    Medical_Status ENUM('Approved','Pending','Not-approved') NOT NULL,
+    Handle_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Submited_Date DATE NOT NULL,
+    Medical_Start_Date DATE NOT NULL,
+    Medical_End_Date DATE NOT NULL, 
+
+    PRIMARY KEY(Regno, C_code, C_type), -- Enforces one medical record per student per course's End exam
+
+    -- Foreign key 1: Relate to the Course
+    CONSTRAINT fk_Medical_EndCourse FOREIGN KEY(C_code, C_type) 
+        REFERENCES Course(C_code, C_type)
+        ON UPDATE CASCADE, 
+
+    -- Foreign key 2: Relate to the Student
+    CONSTRAINT fk_Medical_EndStudent FOREIGN KEY(Regno) 
+        REFERENCES User(User_id) 
+        ON UPDATE CASCADE 
+);
+
+
+-- insert data
+INSERT INTO Medical_end
+(Regno, C_code, C_type, Medical_id, Medical_Status, Submited_Date, Medical_Start_Date, Medical_End_Date)
+VALUES
+('TG/2023/004','ICT2152','T','ICT2152TG004','Approved','2026-06-02','2026-05-28','2026-06-05'),
+('TG/2023/007','ICT2113','P','ICT2113TG007','Approved','2026-06-05','2026-06-01','2026-06-10'),
+('TG/2023/008','ICT2142','T','ICT2142TG008','Approved','2026-06-09','2026-06-05','2026-06-14'),
+('TG/2023/013','ICT2122','T','ICT2122TG013','Approved','2026-06-12','2026-06-08','2026-06-18'),
+('TG/2023/010','TCS2112','T','TCS2112TG010','Approved','2025-11-15','2025-11-10','2025-11-20');
+
+
+
+medical_attendence
+
+--- Medical_attendance ---
+
+CREATE TABLE Medical_Attendence(
+    C_code CHAR(8) NOT NULL,
+    C_type ENUM('P','T') NOT NULL,
+    Regno CHAR(12) NOT NULL,
+    Medical_id CHAR(20) UNIQUE, 
+    Medical_Status ENUM('Approved','Pending','Not-approved') NOT NULL, 
+    Handle_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Submited_Date DATE NOT NULL, 
+    Medical_Start_Date DATE NOT NULL,
+    Medical_End_Date DATE NOT NULL, 
+                                        
+
+    PRIMARY KEY(Regno, C_code, C_type), 
+    
+    -- Foreign key 1: Relate to the Course
+    CONSTRAINT fk_Medical_AttendenceCourse FOREIGN KEY(C_code, C_type) 
+        REFERENCES Course(C_code, C_type)
+        ON UPDATE CASCADE, 
+
+    -- Foreign key 2: Relate to the Student
+    CONSTRAINT fk_Medical_AttendenceStudent FOREIGN KEY(Regno) 
+        REFERENCES User(User_id) 
+        ON UPDATE CASCADE 
+);
+
+
+--- INSERT DATA ---
+
+INSERT INTO Medical_Attendence
+(Regno, C_code, C_type, Medical_id, Medical_Status, Submited_Date, Medical_Start_Date, Medical_End_Date)
+VALUES
+('TG/2023/007','ENG2122','T','ENG2122TG230007','Approved','2026-02-05','2026-02-01','2026-02-10'),
+('TG/2023/004','ICT2113','P','ICT2113TG230004','Approved','2026-04-08','2026-04-01','2026-04-10'),
+('TG/2023/003','ICT2113','P','ICT2113TG230003','Approved','2026-02-15','2026-02-10','2026-02-20'),
+('TG/2023/002','ICT2113','P','ICT2113TG230002','Not-Approved','2026-04-26','2026-04-20','2026-04-28'),
+('TG/2023/008','TCS2112','T','TCS2112TG230008','Not-Approved','2026-02-11','2026-02-05','2026-02-14'),
+('TG/2023/004','ICT2132','P','ICT2132TG230004','Approved','2026-03-12','2026-03-05','2026-03-15'),
+('TG/2023/006','ICT2132','P','ICT2132TG230006','Not-Approved','2026-02-25','2026-02-20','2026-03-01'),
+('TG/2023/006','ICT2122','T','ICT2122TG230006','Approved','2026-02-04','2026-02-01','2026-02-08'),
+('TG/2023/009','ICT2122','T','ICT2122TG230009','Approved','2026-03-22','2026-03-15','2026-03-25'),
+('TG/2023/003','ICT2122','T','ICT2122TG230003','Pending','2026-03-27','2026-03-20','2026-03-30');
+
+
+
+
+Mid
+
+-- Mid
+CREATE TABLE Mid_exam(
+    C_code CHAR(8) NOT NULL,
+    C_type ENUM('P','T') NOT NULL,
+    Regno CHAR(12) NOT NULL,
+    Mid_mark FLOAT(9,2) NOT NULL CHECK (Mid_mark >= 0 AND Mid_mark <= 100),
+
+    PRIMARY KEY(C_code, C_type, Regno),
+    
+    -- Foreign key 1: Relate to the Course
+    CONSTRAINT fk_MidCourse FOREIGN KEY(C_code, C_type) 
+        REFERENCES Course(C_code, C_type)
+        ON UPDATE CASCADE, 
+
+    -- Foreign key 2: Relate to the Student
+    CONSTRAINT fk_MidStudent FOREIGN KEY(Regno) 
+        REFERENCES User(User_id)
+        ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+
+-- insert data
+INSERT INTO Mid_Exam(Regno, C_code, C_type, Mid_Mark)VALUES
+('TG/2023/001','ICT2113','P', 79.0),
+('TG/2023/001','ICT2122','T', 70.0),
+('TG/2023/001','ICT2132','P', 67.5),
+('TG/2023/001','ICT2152','T', 72.0),
+('TG/2023/001','ENG2122','T', 85.0),
+('TG/2023/001','TCS2112','T', 67.5),
+
+
+('TG/2023/002','ICT2113','P', 70.0),
+('TG/2023/002','ICT2122','T', 50.0),
+('TG/2023/002','ICT2132','P', 68.5),
+('TG/2023/002','ICT2152','T', 73.0),
+('TG/2023/002','ENG2122','T', 85.0),
+('TG/2023/002','TCS2112','T', 85.0),
+
+
+('TG/2023/003','ICT2113','P', 89.0),
+('TG/2023/003','ICT2122','T', 74.0),
+('TG/2023/003','ICT2132','P', 57.5),
+('TG/2023/003','ICT2152','T', 62.0),
+('TG/2023/003','ENG2122','T', 75.0),
+('TG/2023/003','TCS2112','T', 85.0),
+
+
+('TG/2023/004','ICT2113','P', 67.0),
+('TG/2023/004','ICT2122','T', 50.0),
+('TG/2023/004','ICT2132','P', 57.5),
+('TG/2023/004','ICT2152','T', 52.0),
+('TG/2023/004','ENG2122','T', 55.0),
+('TG/2023/004','TCS2112','T', 85.0),
+
+
+('TG/2023/005','ICT2113','P', 89.0),
+('TG/2023/005','ICT2122','T', 80.0),
+('TG/2023/005','ICT2132','P', 87.5),
+('TG/2023/005','ICT2152','T', 82.0),
+('TG/2023/005','ENG2122','T', 85.0),
+('TG/2023/005','TCS2112','T', 85.0),
+
+
+('TG/2023/006','ICT2113','P', 59.0),
+('TG/2023/006','ICT2122','T', 71.0),
+('TG/2023/006','ICT2132','P', 64.5),
+('TG/2023/006','ICT2152','T', 75.0),
+('TG/2023/006','ENG2122','T', 82.0),
+('TG/2023/006','TCS2112','T', 85.0),
+
+
+('TG/2023/007','ICT2113','P', 39.0),
+('TG/2023/007','ICT2122','T', 60.0),
+('TG/2023/007','ICT2132','P', 67.5),
+('TG/2023/007','ICT2152','T', 52.0),
+('TG/2023/007','ENG2122','T', 45.0),
+('TG/2023/007','TCS2112','T', 85.0),
+
+
+('TG/2023/008','ICT2113','P', 69.0),
+('TG/2023/008','ICT2122','T', 71.0),
+('TG/2023/008','ICT2132','P', 87.5),
+('TG/2023/008','ICT2152','T', 82.0),
+('TG/2023/008','ENG2122','T', 75.0),
+('TG/2023/008','TCS2112','T', 85.0),
+
+
+('TG/2023/009','ICT2113','P', 73.0),
+('TG/2023/009','ICT2122','T', 60.0),
+('TG/2023/009','ICT2132','P', 68.5),
+('TG/2023/009','ICT2152','T', 79.0),
+('TG/2023/009','ENG2122','T', 89.0),
+('TG/2023/009','TCS2112','T', 85.0),
+
+
+('TG/2023/010','ICT2113','P', 73.0),
+('TG/2023/010','ICT2122','T', 75.0),
+('TG/2023/010','ICT2132','P', 68.5),
+('TG/2023/010','ICT2152','T', 77.0),
+('TG/2023/010','ENG2122','T', 82.0),
+('TG/2023/010','TCS2112','T', 85.0),
+
+
+('TG/2021/023','ICT2132','P', 90.5),
+
+('TG/2021/088','ICT2113','T', 85.0),
+
+
+('TG/2023/012','ICT2113','P', 77.0),
+('TG/2023/012','ICT2122','T', 80.0),
+('TG/2023/012','ICT2132','P', 66.5),
+('TG/2023/012','ICT2152','T', 76.0),
+('TG/2023/012','ENG2122','T', 86.0),
+('TG/2023/012','TCS2112','T', 85.0),
+
+
+('TG/2023/013','ICT2113','P', 72.0),
+('TG/2023/013','ICT2122','T', 71.0),
+('TG/2023/013','ICT2132','P', 62.5),
+('TG/2023/013','ICT2152','T', 73.0),
+('TG/2023/013','ENG2122','T', 83.0),
+('TG/2023/013','TCS2112','T', 85.0),
+
+
+('TG/2023/014','ICT2113','P', 89.0),
+('TG/2023/014','ICT2122','T', 75.0),
+('TG/2023/014','ICT2132','P', 77.5),
+('TG/2023/014','ICT2152','T', 79.0),
+('TG/2023/014','ENG2122','T', 90.0),
+('TG/2023/014','TCS2112','T', 85.0),
+
+
+('TG/2023/015','ICT2113','P', 71.0),
+('TG/2023/015','ICT2122','T', 79.0),
+('TG/2023/015','ICT2132','P', 68.5),
+('TG/2023/015','ICT2152','T', 74.0),
+('TG/2023/015','ENG2122','T', 65.0),
+('TG/2023/015','TCS2112','T', 85.0);
+
+
+
+
+End
+
+-- End
+CREATE TABLE End_exam(
+    C_code CHAR(8) NOT NULL,
+    C_type ENUM('P','T') NOT NULL,
+    Regno CHAR(12) NOT NULL,
+    End_mark FLOAT(9,2) NOT NULL CHECK (End_mark >= 0 AND End_mark <= 100),
+
+    PRIMARY KEY(C_code, C_type, Regno),
+    
+    -- Foreign key 1: Relate to the Course
+    CONSTRAINT fk_EndCourse FOREIGN KEY(C_code, C_type) 
+        REFERENCES Course(C_code, C_type)
+        ON UPDATE CASCADE, 
+
+    -- Foreign key 2: Relate to the Student
+    CONSTRAINT fk_EndStudent FOREIGN KEY(Regno) 
+        REFERENCES User(User_id) 
+        ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+
+-- insert data
+INSERT INTO End_Exam(Regno, C_code, C_type, End_Mark) VALUES
+('TG/2023/001','ICT2142','T', 80.0),
+('TG/2023/001','ICT2122','T', 90.0),
+('TG/2023/001','ICT2132','P', 77.5),
+('TG/2023/001','ICT2152','T', 82.0),
+('TG/2023/001','TCS2112','T', 65.0),
+('TG/2023/001','ICT2113','T', 90.0),
+('TG/2023/001','ICT2113','P', 62.0),
+('TG/2023/001','ENG2122','T', 95.0),
+
+('TG/2023/002','ICT2142','T', 81.0),
+('TG/2023/002','ICT2122','T', 92.0),
+('TG/2023/002','ICT2132','P', 78.5),
+('TG/2023/002','ICT2152','T', 85.0),
+('TG/2023/002','TCS2112','T', 69.0),
+('TG/2023/002','ICT2113','T', 93.0),
+('TG/2023/002','ICT2113','P', 68.0),
+('TG/2023/002','ENG2122','T', 92.0),
+
+('TG/2023/003','ICT2142','T', 85.0),
+('TG/2023/003','ICT2122','T', 94.0),
+('TG/2023/003','ICT2132','P', 76.5),
+('TG/2023/003','ICT2152','T', 88.0),
+('TG/2023/003','TCS2112','T', 65.0),
+('TG/2023/003','ICT2113','T', 90.0),
+('TG/2023/003','ICT2113','P', 66.0),
+('TG/2023/003','ENG2122','T', 80.0),
+
+('TG/2023/004','ICT2142','T', 70.0),
+('TG/2023/004','ICT2122','T', 90.0),
+('TG/2023/004','ICT2132','P', 87.5),
+('TG/2023/004','ICT2152','T', 98.0),
+('TG/2023/004','TCS2112','T', 61.0),
+('TG/2023/004','ICT2113','T', 55.0),
+('TG/2023/004','ICT2113','P', 64.0),
+('TG/2023/004','ENG2122','T', 90.0),
+
+('TG/2023/005','ICT2142','T', 50.0),
+('TG/2023/005','ICT2122','T', 60.0),
+('TG/2023/005','ICT2132','P', 67.5),
+('TG/2023/005','ICT2152','T', 62.0),
+('TG/2023/005','TCS2112','T', 65.0),
+('TG/2023/005','ICT2113','T', 50.0),
+('TG/2023/005','ICT2113','P', 62.0),
+('TG/2023/005','ENG2122','T', 55.0),
+
+('TG/2023/006','ICT2142','T', 46.0),
+('TG/2023/006','ICT2122','T', 91.0),
+('TG/2023/006','ICT2132','P', 57.5),
+('TG/2023/006','ICT2152','T', 78.0),
+('TG/2023/006','TCS2112','T', 6.0),
+('TG/2023/006','ICT2113','T', 90.0),
+('TG/2023/006','ICT2113','P', 62.0),
+('TG/2023/006','ENG2122','T', 85.0),
+
+('TG/2023/007','ICT2142','T', 83.0),
+('TG/2023/007','ICT2122','T', 60.0),
+('TG/2023/007','ICT2132','P', 57.5),
+('TG/2023/007','ICT2152','T', 86.0),
+('TG/2023/007','TCS2112','T', 67.0),
+('TG/2023/007','ICT2113','T', 93.0),
+('TG/2023/007','ICT2113','P', 64.0),
+('TG/2023/007','ENG2122','T', 92.0),
+
+('TG/2023/008','ICT2142','T', 69.0),
+('TG/2023/008','ICT2122','T', 88.0),
+('TG/2023/008','ICT2132','P', 74.5),
+('TG/2023/008','ICT2152','T', 82.0),
+('TG/2023/008','TCS2112','T', 66.0),
+('TG/2023/008','ICT2113','T', 78.0),
+('TG/2023/008','ICT2113','P', 66.0),
+('TG/2023/008','ENG2122','T', 89.0),
+
+('TG/2023/009','ICT2142','T', 80.0),
+('TG/2023/009','ICT2122','T', 92.0),
+('TG/2023/009','ICT2132','P', 75.5),
+('TG/2023/009','ICT2152','T', 85.0),
+('TG/2023/009','TCS2112','T', 65.0),
+('TG/2023/009','ICT2113','T', 95.0),
+('TG/2023/009','ICT2113','P', 62.0),
+('TG/2023/009','ENG2122','T', 85.0),
+
+('TG/2023/010','ICT2142','T', 83.0),
+('TG/2023/010','ICT2122','T', 94.0),
+('TG/2023/010','ICT2132','P', 71.5),
+('TG/2023/010','ICT2152','T', 81.0),
+('TG/2023/010','TCS2112','T', 61.0),
+('TG/2023/010','ICT2113','T', 91.0),
+('TG/2023/010','ICT2113','P', 61.0),
+('TG/2023/010','ENG2122','T', 81.0),
+
+('TG/2023/012','ICT2142','T', 84.0),
+('TG/2023/012','ICT2122','T', 95.0),
+('TG/2023/012','ICT2132','P', 75.5),
+('TG/2023/012','ICT2152','T', 85.0),
+('TG/2023/012','TCS2112','T', 65.0),
+('TG/2023/012','ICT2113','T', 95.0),
+('TG/2023/012','ICT2113','P', 65.0),
+('TG/2023/012','ENG2122','T', 65.0),
+
+('TG/2023/013','ICT2142','T', 68.0),
+('TG/2023/013','ICT2122','T', 94.0),
+('TG/2023/013','ICT2132','P', 54.5),
+('TG/2023/013','ICT2152','T', 87.0),
+('TG/2023/013','TCS2112','T', 85.0),
+('TG/2023/013','ICT2113','T', 65.0),
+('TG/2023/013','ICT2113','P', 62.0),
+('TG/2023/013','ENG2122','T', 78.0),
+
+('TG/2021/023','ICT2142','T', 88.0),
+
+('TG/2021/088','TCS2112','T', 95.0),
+
+('TG/2023/014','ICT2142','T', 40.0),
+('TG/2023/014','ICT2122','T', 50.0),
+('TG/2023/014','ICT2132','P', 35.5),
+('TG/2023/014','ICT2152','T', 52.0),
+('TG/2023/014','TCS2112','T', 46.0),
+('TG/2023/014','ICT2113','T', 60.0),
+('TG/2023/014','ICT2113','P', 40.0),
+('TG/2023/014','ENG2122','T', 30.0),
+
+('TG/2023/015','ICT2142','T', 80.0),
+('TG/2023/015','ICT2122','T', 90.0),
+('TG/2023/015','ICT2132','P', 87.5),
+('TG/2023/015','ICT2152','T', 82.0),
+('TG/2023/015','TCS2112','T', 85.0),
+('TG/2023/015','ICT2113','T', 90.0),
+('TG/2023/015','ICT2113','P', 82.0),
+('TG/2023/015','ENG2122','T', 95.0);
+
+
+
+Project
+
+-- Project
+CREATE TABLE Project(
+	C_code CHAR(8) NOT NULL,
+	C_type ENUM('P','T') NOT NULL,
+	Regno CHAR(12) NOT NULL,
+	P_mark FLOAT(9,2) NOT NULL CHECK (P_mark >= 0 AND P_mark <= 100),
+
+	PRIMARY KEY(C_code,C_type,Regno),
+	
+	-- Foreign key 1:Relate to the Course
+	CONSTRAINT fk_Courseproject FOREIGN KEY(C_code,C_type) REFERENCES Course(C_code,C_type),
+
+	-- Foreign key 2:Relate to the Student
+	CONSTRAINT fk_ProjectStudent FOREIGN KEY(Regno) REFERENCES User(User_id)
+ ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+-- insert data
+INSERT INTO Project
+	(Regno,C_code,C_type,P_mark)
+VALUES
+	('TG/2023/001','ICT2152','T',71),
+	('TG/2023/002','ICT2152','T',78),
+	('TG/2023/003','ICT2152','T',80),
+	('TG/2023/004','ICT2152','T',75),
+	('TG/2023/005','ICT2152','T',82),
+	('TG/2023/006','ICT2152','T',89),
+	('TG/2023/007','ICT2152','T',79),
+	('TG/2023/008','ICT2152','T',81),
+	('TG/2023/009','ICT2152','T',90),
+	('TG/2023/010','ICT2152','T',72),
+	('TG/2023/012','ICT2152','T',60),
+	('TG/2023/013','ICT2152','T',84),
+	('TG/2023/014','ICT2152','T',78),
+	('TG/2023/015','ICT2152','T',76),
+
+	('TG/2023/001','ICT2132','P',60),
+	('TG/2023/002','ICT2132','P',84),
+	('TG/2023/003','ICT2132','P',78),
+	('TG/2023/004','ICT2132','P',76),
+	('TG/2023/005','ICT2132','P',87),
+	('TG/2023/006','ICT2132','P',89),
+	('TG/2023/007','ICT2132','P',88),
+	('TG/2023/008','ICT2132','P',78),
+	('TG/2023/009','ICT2132','P',83),
+	('TG/2023/010','ICT2132','P',80),
+	('TG/2023/012','ICT2132','P',71),
+	('TG/2023/013','ICT2132','P',78),
+	('TG/2023/014','ICT2132','P',80),
+	('TG/2023/015','ICT2132','P',75),
+
+        ('TG/2023/001','TCS2122','T',71),
+	('TG/2023/002','TCS2122','T',78),
+	('TG/2023/003','TCS2122','T',80),
+	('TG/2023/004','TCS2122','T',72),
+	('TG/2023/005','TCS2122','T',82),
+	('TG/2023/006','TCS2122','T',89),
+	('TG/2023/007','TCS2122','T',79),
+	('TG/2023/008','TCS2122','T',55),
+	('TG/2023/009','TCS2122','T',90),
+	('TG/2023/010','TCS2122','T',72),
+	('TG/2023/012','TCS2122','T',60),
+	('TG/2023/013','TCS2122','T',84),
+	('TG/2023/014','TCS2122','T',78),
+	('TG/2023/015','TCS2122','T',76);
+
+
+
+
+Quiz
+
+-- Quiz
+CREATE TABLE Quiz(
+    C_code CHAR(8) NOT NULL,
+    C_type ENUM('P','T') NOT NULL,
+    Regno CHAR(12) NOT NULL,
+    Q_mark FLOAT(5,2) CHECK (Q_mark >= 0 AND Q_mark <= 100),
+    Q_no INT NOT NULL CHECK (Q_no >= 1 AND Q_no <= 3),
+
+    PRIMARY KEY(C_code, C_type, Regno, Q_no),
+
+    -- Foreign_Key 1: Relate to the course
+    CONSTRAINT fk_QCourse FOREIGN KEY(C_code, C_type) REFERENCES Course(C_code, C_type)
+    ON UPDATE CASCADE,
+
+    -- FOREIGN_KEY 2: Relate to the student
+    CONSTRAINT fk_Qregno FOREIGN KEY(Regno) REFERENCES User(User_id)
+    ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- insert data
+INSERT INTO Quiz (Regno, C_code, C_type, Q_no, Q_mark)VALUES
+('TG/2023/001','TCS2112','T', 1, 85.0),
+('TG/2023/002','TCS2112','T', 1, 90.0),
+('TG/2023/003','TCS2112','T', 1, 75.0),
+('TG/2023/004','TCS2112','T', 1, 50.0),
+('TG/2023/005','TCS2112','T', 1, 67.5),
+('TG/2023/006','TCS2112','T', 1, 92.0),
+('TG/2023/007','TCS2112','T', 1, 95.0),
+('TG/2023/008','TCS2112','T', 1, 92.5),
+('TG/2023/009','TCS2112','T', 1, 80.0),
+('TG/2023/010','TCS2112','T', 1, 62.5),
+('TG/2023/012','TCS2112','T', 1, 75.0),
+('TG/2023/013','TCS2112','T', 1, 67.5),
+('TG/2023/014','TCS2112','T', 1, 72.0),
+('TG/2023/015','TCS2112','T', 1, 81.0),
+('TG/2022/050','TCS2112','T', 1, 77.5),
+('TG/2021/023','TCS2112','T', 1, 80.0),
+
+('TG/2023/001','ICT2113','T', 1, 69.0),
+('TG/2023/002','ICT2113','T', 1, 85.0),
+('TG/2023/003','ICT2113','T', 1, 90.0),
+('TG/2023/004','ICT2113','T', 1, 91.0),
+('TG/2023/005','ICT2113','T', 1, 82.5),
+('TG/2023/006','ICT2113','T', 1, 80.0),
+('TG/2023/007','ICT2113','T', 1, 79.0),
+('TG/2023/008','ICT2113','T', 1, 70.0),
+('TG/2023/009','ICT2113','T', 1, 67.5),
+('TG/2023/010','ICT2113','T', 1, 72.0),
+('TG/2023/012','ICT2113','T', 1, 80.0),
+('TG/2023/013','ICT2113','T', 1, 82.0),
+('TG/2023/014','ICT2113','T', 1, 77.5),
+('TG/2023/015','ICT2113','T', 1, 78.0),
+('TG/2022/050','ICT2113','T', 1, 86.0),
+('TG/2021/023','ICT2113','T', 1, 84.5),
+
+('TG/2023/001','ICT2142','T', 1, 79.5),
+('TG/2023/002','ICT2142','T', 1, 81.0),
+('TG/2023/003','ICT2142','T', 1, 76.0),
+('TG/2023/004','ICT2142','T', 1, 67.5),
+('TG/2023/005','ICT2142','T', 1, 65.0),
+('TG/2023/006','ICT2142','T', 1, 74.0),
+('TG/2023/007','ICT2142','T', 1, 89.0),
+('TG/2023/008','ICT2142','T', 1, 87.5),
+('TG/2023/009','ICT2142','T', 1, 90.0),
+('TG/2023/010','ICT2142','T', 1, 83.0),
+('TG/2023/012','ICT2142','T', 1, 87.5),
+('TG/2023/013','ICT2142','T', 1, 91.0),
+('TG/2023/014','ICT2142','T', 1, 80.0),
+
+('TG/2023/001','ICT2122','T', 1, 86.0),
+('TG/2023/002','ICT2122','T', 1, 69.5),
+('TG/2023/003','ICT2122','T', 1, 74.0),
+('TG/2023/004','ICT2122','T', 1, 72.5),
+('TG/2023/005','ICT2122','T', 1, 68.0),
+('TG/2023/006','ICT2122','T', 1, 76.0),
+('TG/2023/007','ICT2122','T', 1, 81.0),
+('TG/2023/008','ICT2122','T', 1, 85.0),
+('TG/2023/010','ICT2122','T', 1, 87.0),
+('TG/2023/012','ICT2122','T', 1, 78.5),
+('TG/2023/013','ICT2122','T', 1, 80.0),
+('TG/2023/014','ICT2122','T', 1, 72.0),
+('TG/2023/015','ICT2122','T', 1, 65.0),
+
+('TG/2023/001','ICT2113','T', 2, 85.0),
+('TG/2023/002','ICT2113','T', 2, 90.0),
+('TG/2023/003','ICT2113','T', 2, 75.0),
+('TG/2023/004','ICT2113','T', 2, 50.0),
+('TG/2023/005','ICT2113','T', 2, 67.5),
+('TG/2023/006','ICT2113','T', 2, 92.0),
+('TG/2023/007','ICT2113','T', 2, 95.0),
+('TG/2023/008','ICT2113','T', 2, 92.5),
+('TG/2023/009','ICT2113','T', 2, 80.0),
+('TG/2023/010','ICT2113','T', 2, 62.5),
+('TG/2023/012','ICT2113','T', 2, 75.0),
+('TG/2023/013','ICT2113','T', 2, 67.5),
+('TG/2023/014','ICT2113','T', 2, 72.0),
+('TG/2023/015','ICT2113','T', 2, 81.0),
+('TG/2022/050','ICT2113','T', 2, 77.5),
+('TG/2021/023','ICT2113','T', 2, 80.0),
+
+('TG/2023/001','TCS2112','T', 2, 69.0),
+('TG/2023/002','TCS2112','T', 2, 85.0),
+('TG/2023/003','TCS2112','T', 2, 90.0),
+('TG/2023/004','TCS2112','T', 2, 91.0),
+('TG/2023/005','TCS2112','T', 2, 82.5),
+('TG/2023/006','TCS2112','T', 2, 80.0),
+('TG/2023/007','TCS2112','T', 2, 79.0),
+('TG/2023/008','TCS2112','T', 2, 70.0),
+('TG/2023/009','TCS2112','T', 2, 67.5),
+('TG/2023/010','TCS2112','T', 2, 72.0),
+('TG/2023/012','TCS2112','T', 2, 80.0),
+('TG/2023/013','TCS2112','T', 2, 82.0),
+('TG/2023/014','TCS2112','T', 2, 77.5),
+('TG/2023/015','TCS2112','T', 2, 78.0),
+('TG/2022/050','TCS2112','T', 2, 86.0),
+('TG/2021/023','TCS2112','T', 2, 84.5),
+
+('TG/2023/001','ICT2142','T', 2, 86.0),
+('TG/2023/002','ICT2142','T', 2, 69.5),
+('TG/2023/003','ICT2142','T', 2, 74.0),
+('TG/2023/004','ICT2142','T', 2, 72.5),
+('TG/2023/005','ICT2142','T', 2, 68.0),
+('TG/2023/006','ICT2142','T', 2, 76.0),
+('TG/2023/007','ICT2142','T', 2, 81.0),
+('TG/2023/008','ICT2142','T', 2, 85.0),
+('TG/2023/010','ICT2142','T', 2, 87.0),
+('TG/2023/012','ICT2142','T', 2, 78.5),
+('TG/2023/013','ICT2142','T', 2, 80.0),
+('TG/2023/014','ICT2142','T', 2, 72.0),
+('TG/2023/015','ICT2142','T', 2, 65.0),
+
+('TG/2023/001','ICT2122','T', 2, 79.5),
+('TG/2023/002','ICT2122','T', 2, 81.0),
+('TG/2023/003','ICT2122','T', 2, 76.0),
+('TG/2023/004','ICT2122','T', 2, 67.5),
+('TG/2023/005','ICT2122','T', 2, 65.0),
+('TG/2023/006','ICT2122','T', 2, 74.0),
+('TG/2023/007','ICT2122','T', 2, 89.0),
+('TG/2023/008','ICT2122','T', 2, 87.5),
+('TG/2023/009','ICT2122','T', 2, 90.0),
+('TG/2023/010','ICT2122','T', 2, 83.0),
+('TG/2023/012','ICT2122','T', 2, 87.5),
+('TG/2023/013','ICT2122','T', 2, 91.0),
+('TG/2023/014','ICT2122','T', 2, 80.0),
+('TG/2023/015','ICT2122','T', 2, 84.0),
+
+('TG/2023/001','ICT2122','T', 3, 85.0),
+('TG/2023/002','ICT2122','T', 3, 90.0),
+('TG/2023/003','ICT2122','T', 3, 75.0),
+('TG/2023/004','ICT2122','T', 3, 50.0),
+('TG/2023/005','ICT2122','T', 3, 67.5),
+('TG/2023/006','ICT2122','T', 3, 92.0),
+('TG/2023/007','ICT2122','T', 3, 95.0),
+('TG/2023/008','ICT2122','T', 3, 92.5),
+('TG/2023/009','ICT2122','T', 3, 80.0),
+('TG/2023/010','ICT2122','T', 3, 62.5),
+('TG/2023/012','ICT2122','T', 3, 75.0),
+('TG/2023/013','ICT2122','T', 3, 67.5),
+('TG/2023/014','ICT2122','T', 3, 72.0),
+('TG/2023/015','ICT2122','T', 3, 81.0),
+
+('TG/2023/001','ICT2113','T', 3, 79.5),
+('TG/2023/002','ICT2113','T', 3, 81.0),
+('TG/2023/003','ICT2113','T', 3, 76.0),
+('TG/2023/004','ICT2113','T', 3, 67.5),
+('TG/2023/005','ICT2113','T', 3, 65.0),
+('TG/2023/006','ICT2113','T', 3, 74.0),
+('TG/2023/007','ICT2113','T', 3, 89.0),
+('TG/2023/008','ICT2113','T', 3, 87.5),
+('TG/2023/009','ICT2113','T', 3, 90.0),
+('TG/2023/010','ICT2113','T', 3, 83.0),
+('TG/2023/012','ICT2113','T', 3, 87.5),
+('TG/2023/013','ICT2113','T', 3, 91.0),
+('TG/2023/014','ICT2113','T', 3, 80.0),
+('TG/2022/050','ICT2113','T', 3, 77.5),
+('TG/2021/023','ICT2113','T', 3, 80.0),
+
+('TG/2023/001','ICT2142','T', 3, 85.0),
+('TG/2023/002','ICT2142','T', 3, 83.0),
+('TG/2023/003','ICT2142','T', 3, 81.0),
+('TG/2023/004','ICT2142','T', 3, 78.0),
+('TG/2023/005','ICT2142','T', 3, 80.0),
+('TG/2023/006','ICT2142','T', 3, 87.0),
+('TG/2023/007','ICT2142','T', 3, 94.0),
+('TG/2023/008','ICT2142','T', 3, 91.5),
+('TG/2023/009','ICT2142','T', 3, 90.0),
+('TG/2023/010','ICT2142','T', 3, 86.0),
+('TG/2023/012','ICT2142','T', 3, 80.0),
+('TG/2023/013','ICT2142','T', 3, 85.0),
+('TG/2023/014','ICT2142','T', 3, 67.5),
+('TG/2023/015','ICT2142','T', 3, 92.0);
+
+
+
+Assignment
+
+--- CREATE TABLE ---
+
+CREATE TABLE Assignment(
+    C_code CHAR(8) NOT NULL,
+    C_type ENUM('P','T') NOT NULL,
+    Regno CHAR(12) NOT NULL,
+    A_mark FLOAT(5,2) NOT NULL CHECK (A_mark >= 0 AND A_mark <= 100),
+  
+
+    PRIMARY KEY(C_code, C_type, Regno),
+    
+
+    -- Foreign key 1: Relate to the Course
+    CONSTRAINT fk_AssignmentCourse FOREIGN KEY(C_code, C_type) 
+        REFERENCES Course(C_code, C_type) 
+        ON UPDATE CASCADE, 
+    
+    -- Foreign key 2: Relate to the Student 
+    CONSTRAINT fk_AssignmentStudent FOREIGN KEY(Regno) 
+        REFERENCES User(User_id)
+        ON UPDATE CASCADE ON DELETE CASCADE
+); 
+
+
+--- INSERT DATA ---
+
+INSERT INTO Assignment (C_code, C_type, Regno, A_mark) VALUES
+('ENG2122','T','TG/2023/001',75),
+('ENG2122','T','TG/2023/002',85),
+('ENG2122','T','TG/2023/003',65),
+('ENG2122','T','TG/2023/004',76),
+('ENG2122','T','TG/2023/005',89),
+('ENG2122','T','TG/2023/006',81),
+('ENG2122','T','TG/2023/007',73),
+('ENG2122','T','TG/2023/008',61),
+('ENG2122','T','TG/2023/009',52),
+('ENG2122','T','TG/2023/010',98),
+('ENG2122','T','TG/2023/012',81),
+('ENG2122','T','TG/2023/013',73),
+('ENG2122','T','TG/2023/014',61),
+('ENG2122','T','TG/2023/015',52),
+
+('ICT2142','T','TG/2023/001',71),
+('ICT2142','T','TG/2023/002',65),
+('ICT2142','T','TG/2023/003',85),
+('ICT2142','T','TG/2023/004',96),
+('ICT2142','T','TG/2023/005',29),
+('ICT2142','T','TG/2023/006',71),
+('ICT2142','T','TG/2023/007',43),
+('ICT2142','T','TG/2023/008',61),
+('ICT2142','T','TG/2023/009',92),
+('ICT2142','T','TG/2023/010',68),
+('ICT2142','T','TG/2023/012',43),
+('ICT2142','T','TG/2023/013',61),
+('ICT2142','T','TG/2023/014',92),
+('ICT2142','T','TG/2023/015',68),
+
+
+('TCS2112','T','TG/2023/001',73),
+('TCS2112','T','TG/2023/002',66),
+('TCS2112','T','TG/2023/003',81),
+('TCS2112','T','TG/2023/004',90),
+('TCS2112','T','TG/2023/005',38),
+('TCS2112','T','TG/2023/006',72),
+('TCS2112','T','TG/2023/007',46),
+('TCS2112','T','TG/2023/008',65),
+('TCS2112','T','TG/2023/009',99),
+('TCS2112','T','TG/2023/010',60),
+('TCS2112','T','TG/2023/012',90),
+('TCS2112','T','TG/2023/013',38),
+('TCS2112','T','TG/2023/014',72),
+('TCS2112','T','TG/2023/015',46),
+
+('TCS2122','T','TG/2023/001',75),
+('TCS2122','T','TG/2023/002',85),
+('TCS2122','T','TG/2023/003',65),
+('TCS2122','T','TG/2023/004',76),
+('TCS2122','T','TG/2023/005',89),
+('TCS2122','T','TG/2023/006',81),
+('TCS2122','T','TG/2023/007',73),
+('TCS2122','T','TG/2023/008',61),
+('TCS2122','T','TG/2023/009',52),
+('TCS2122','T','TG/2023/010',98),
+('TCS2122','T','TG/2023/012',89),
+('TCS2122','T','TG/2023/013',81),
+('TCS2122','T','TG/2023/014',73),
+('TCS2122','T','TG/2023/015',61);
+
+
+
+
+
+
+
