@@ -1,0 +1,43 @@
+--- Medical_attendance ---
+
+CREATE TABLE Medical_Attendence(
+    C_code CHAR(8) NOT NULL,
+    C_type ENUM('P','T') NOT NULL,
+    Regno CHAR(12) NOT NULL,
+    Medical_id CHAR(20) UNIQUE, 
+    Medical_Status ENUM('Approved','Pending','Not-approved') NOT NULL, 
+    Handle_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Submited_Date DATE NOT NULL, 
+    Medical_Start_Date DATE NOT NULL,
+    Medical_End_Date DATE NOT NULL, 
+                                        
+
+    PRIMARY KEY(Regno, C_code, C_type), 
+    
+    -- Foreign key 1: Relate to the Course
+    CONSTRAINT fk_Medical_AttendenceCourse FOREIGN KEY(C_code, C_type) 
+        REFERENCES Course(C_code, C_type)
+        ON UPDATE CASCADE, 
+
+    -- Foreign key 2: Relate to the Student
+    CONSTRAINT fk_Medical_AttendenceStudent FOREIGN KEY(Regno) 
+        REFERENCES User(User_id) 
+        ON UPDATE CASCADE 
+);
+
+
+--- INSERT DATA ---
+
+INSERT INTO Medical_Attendence
+(Regno, C_code, C_type, Medical_id, Medical_Status, Submited_Date, Medical_Start_Date, Medical_End_Date)
+VALUES
+('TG/2023/007','ENG2122','T','ENG2122TG230007','Approved','2026-02-05','2026-02-01','2026-02-10'),
+('TG/2023/004','ICT2113','P','ICT2113TG230004','Approved','2026-04-08','2026-04-01','2026-04-10'),
+('TG/2023/003','ICT2113','P','ICT2113TG230003','Approved','2026-02-15','2026-02-10','2026-02-20'),
+('TG/2023/002','ICT2113','P','ICT2113TG230002','Not-Approved','2026-04-26','2026-04-20','2026-04-28'),
+('TG/2023/008','TCS2112','T','TCS2112TG230008','Not-Approved','2026-02-11','2026-02-05','2026-02-14'),
+('TG/2023/004','ICT2132','P','ICT2132TG230004','Approved','2026-03-12','2026-03-05','2026-03-15'),
+('TG/2023/006','ICT2132','P','ICT2132TG230006','Not-Approved','2026-02-25','2026-02-20','2026-03-01'),
+('TG/2023/006','ICT2122','T','ICT2122TG230006','Approved','2026-02-04','2026-02-01','2026-02-08'),
+('TG/2023/009','ICT2122','T','ICT2122TG230009','Approved','2026-03-22','2026-03-15','2026-03-25'),
+('TG/2023/003','ICT2122','T','ICT2122TG230003','Pending','2026-03-27','2026-03-20','2026-03-30');

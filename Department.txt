@@ -1,0 +1,18 @@
+--- CREATE TABLE ---
+
+CREATE TABLE Department(
+
+  Dep_id CHAR(5)  NOT NULL,
+  Dep_name VARCHAR(50)  NOT NULL,
+  PRIMARY KEY(Dep_id)
+
+);
+
+--- INSERT DATA ---
+
+INSERT INTO Department
+(Dep_id,Dep_name)
+VALUES
+('DICT','Information and Communication Technology'),
+('DMS','Multidiciplinary Studies'),
+('DENT','Engineering Technology');
